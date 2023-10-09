@@ -71,10 +71,10 @@ canvas {
 }
 
 .logo-img {
-  width: 200px;
-  height: 200px;
-  margin-left: -100px;
-  margin-top: -50px;
+  width: 230px;
+  height: 230px;
+  margin-left: -115px;
+  margin-top: -59px;
   cursor: pointer;
 
   -webkit-animation: fadein 8s; /* Safari, Chrome and Opera > 12.1 */
