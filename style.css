@@ -74,7 +74,7 @@ canvas {
   width: 230px;
   height: 230px;
   margin-left: -115px;
-  margin-top: -59px;
+  margin-top: -50px;
   cursor: pointer;
 
   -webkit-animation: fadein 8s; /* Safari, Chrome and Opera > 12.1 */
