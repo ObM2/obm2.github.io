@@ -71,8 +71,8 @@ canvas {
 }
 
 .logo-img {
-  width: 512px;
-  height: 512px;
+  width: 200px;
+  height: 200px;
   margin-left: -100px;
   margin-top: -50px;
   cursor: pointer;
