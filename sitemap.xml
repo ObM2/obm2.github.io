@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://obm2.github.io/obm2/</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/index.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/usage.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/stacker.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/examples.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/remote.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/contribute.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockBase.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockBypassCF.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockCaptcha.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockFunction.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockImageCaptcha.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockKeycheck.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockLSCode.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockParse.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockRecaptcha.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockRequest.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockTCP.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockUtility.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BotData.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ConditionChecker.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Config.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ConfigSettings.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.IOManager.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.LogEntry.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.MultipartContent.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.SBlockBrowserAction.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.SBlockElementAction.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.SBlockExecuteJS.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.SBlockNavigate.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.TypeSwitch.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockCaptcha.CaptchaService.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockFunction.Function.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BlockFunction.Hash.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BotStatus.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.BrowserAction.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Condition.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Conversion.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ElementAction.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ElementLocator.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.FileAction.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ListAction.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.LogLevel.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.MultipartContentType.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ParseType.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.RequestType.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ResponseType.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.TCPCommand.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.UtilityGroup.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.VarAction.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ViewModels.ViewModelBase.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.KeyChain.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ViewModels.RLSettingsViewModel.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.CData.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.CProxy.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.CaptchaServices.CaptchaService.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.VariableList.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ViewModels.CustomInput.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.DataRule.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.EnvironmentSettings.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.DataPool.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.Key.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.ValidData.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Runner.RunnerBotViewModel.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Runner.RunnerViewModel.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ViewModels.ConfigViewModel.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ViewModels.SettingsCaptchas.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ViewModels.SettingsGeneral.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ViewModels.SettingsProxies.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ViewModels.SettingsSelenium.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ViewModels.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.KeyChain.KeychainMode.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.KeyChain.KeychainType.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.WordlistType.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.CVar.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.Status.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.ProxyWorking.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.CaptchaServices.AntiCaptcha.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.CaptchaServices.AZCaptcha.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.CaptchaServices.CaptchasIO.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.CaptchaServices.DeathByCaptcha.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.CaptchaServices.DeCaptcher.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.CaptchaServices.ImageTyperz.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.CaptchaServices.SolveReCaptcha.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.CaptchaServices.TwoCaptcha.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.CaptchaServices.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.CaptchaServices.CaptchaService.CaptchaStatus.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.CVar.VarType.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.RuleType.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.CustomKeychain.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.ExportFormat.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Runner.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Runner.AbortableBackgroundWorker.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Runner.IRunnerMessaging.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Runner.ProxyMode.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.ProxyPool.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.Wordlist.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Runner.WorkerStatus.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.Hit.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ViewModels.BotsDisplayMode.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ViewModels.ProxyReloadSource.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.ViewModels.BrowserType.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.Models.Record.html</loc>
+  <lastmod>2024-01-25T15:18:03+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://obm2.github.io/obm2/api/RuriLib.CaptchaServices.CWebClient.html</loc>
+  <lastmod>2024-01-25T15:18:04+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+
+
+</urlset>
