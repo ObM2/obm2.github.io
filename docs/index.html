@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OBM2 Pro — Documentation</title>
+  <meta name="description" content="Official documentation for OpenBullet M2 Pro — the advanced web-testing suite."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap"/>
+  <link rel="stylesheet" href="../assets/css/docs.css"/>
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────────────────── -->
+<header class="site-header">
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button>
+  <a class="logo" href="index.html">
+    <img src="../M2Logo.png" alt="OBM2 Pro"/>
+    OBM2 Pro
+    <span class="version-badge">v3.1.2</span>
+  </a>
+  <nav class="header-nav">
+    <a href="index.html" class="active">Home</a>
+    <a href="usage.html">Usage</a>
+    <a href="stacker.html">Stacker</a>
+    <a href="variables.html">Variables</a>
+    <a href="loliscript.html">LoliScript</a>
+    <a href="remote.html">Remote API</a>
+    <a href="examples.html">Examples</a>
+  </nav>
+  <div class="header-spacer"></div>
+  <div class="header-search">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" id="search-input" placeholder="Search docs…" autocomplete="off"/>
+    <div class="search-results" id="search-results"></div>
+  </div>
+  <a href="https://github.com/ObM2/ObM2Pro" style="color:var(--text-muted);font-size:.85rem;margin-left:.5rem;">GitHub</a>
+</header>
+
+<!-- ── Layout ─────────────────────────────────────────────── -->
+<div class="docs-layout">
+
+  <!-- Sidebar -->
+  <aside class="docs-sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Getting Started</div>
+      <a class="sidebar-link active" href="index.html">Introduction</a>
+      <a class="sidebar-link" href="usage.html">Usage Guide</a>
+      <a class="sidebar-link" href="examples.html">Examples</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Scripting</div>
+      <a class="sidebar-link" href="stacker.html">Stacker &amp; Blocks</a>
+      <a class="sidebar-link" href="variables.html">Variables &amp; BotData</a>
+      <a class="sidebar-link" href="loliscript.html">LoliScript Reference</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Advanced</div>
+      <a class="sidebar-link" href="remote.html">Remote API</a>
+      <a class="sidebar-link" href="contribute.html">Contribute</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Links</div>
+      <a class="sidebar-link" href="https://github.com/ObM2/ObM2Pro">GitHub Repository</a>
+    </div>
+  </aside>
+
+  <!-- Content -->
+  <main class="docs-content">
+    <div class="docs-content-inner">
+
+      <div class="hero">
+        <h1>OBM2 Pro Documentation</h1>
+        <p class="subtitle">
+          OpenBullet M2 Pro is an advanced web-testing suite for scraping, parsing,
+          automated pentesting, selenium unit testing, and credential verification.
+          Built on .NET 4.8 with a modern WPF interface.
+        </p>
+        <div class="quicklinks">
+          <a class="ql-btn ql-btn-primary" href="stacker.html">&#9654; Stacker &amp; Blocks</a>
+          <a class="ql-btn ql-btn-secondary" href="usage.html">Usage Guide</a>
+          <a class="ql-btn ql-btn-secondary" href="loliscript.html">LoliScript</a>
+          <a class="ql-btn ql-btn-secondary" href="https://github.com/ObM2/ObM2Pro">GitHub</a>
+        </div>
+      </div>
+
+      <h2>What is OBM2 Pro?</h2>
+      <p>
+        OBM2 Pro is a fork of the original OpenBullet project, redesigned with a modern dark UI,
+        new protocol blocks (TLS, IMAP, POP3, SMTP, FTP), an improved Stacker with dynamic variable
+        suggestions, and many quality-of-life improvements for automation professionals.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="fc-icon">&#127760;</div>
+          <div class="fc-title">HTTP &amp; TLS Requests</div>
+          <div class="fc-desc">Full HTTP support plus a native TLS proxy for fingerprint bypass.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#128231;</div>
+          <div class="fc-title">Email Protocols</div>
+          <div class="fc-desc">IMAP, POP3, and SMTP blocks with session persistence and timeout control.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#128193;</div>
+          <div class="fc-title">FTP Block</div>
+          <div class="fc-desc">List, download, upload, and manage files via FTP/FTPS.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#129302;</div>
+          <div class="fc-title">Selenium</div>
+          <div class="fc-desc">Browser automation with Navigate, BrowserAction, ElementAction, and ExecuteJS.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#128274;</div>
+          <div class="fc-title">Captcha Solving</div>
+          <div class="fc-desc">9 captcha types with support for 10+ solving services.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#128269;</div>
+          <div class="fc-title">Dynamic Variables</div>
+          <div class="fc-desc">Context-aware variable suggestions in the Stacker UI based on previous blocks.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#128296;</div>
+          <div class="fc-title">22 Functions</div>
+          <div class="fc-desc">String, list, hash, encoding, and conversion operations in the Function block.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#128202;</div>
+          <div class="fc-title">Runner &amp; Proxy</div>
+          <div class="fc-desc">Multi-bot runner with proxy manager supporting HTTP(S), Socks4/5, and chains.</div>
+        </div>
+      </div>
+
+      <h2>Architecture Overview</h2>
+      <p>
+        Scripts are written in <strong>LoliScript</strong> — a line-based domain-specific language —
+        or assembled visually in the <strong>Stacker</strong> drag-and-drop editor. Each block
+        corresponds to a LoliScript keyword and exposes typed output variables accessible by all
+        subsequent blocks via <code>&lt;varName&gt;</code> syntax.
+      </p>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">&#8505;</span>
+        <p>All blocks store their output in <strong>BotData</strong>, which is the shared state
+        object for a single bot execution. Variables persist across blocks within the same run.</p>
+      </div>
+
+      <h2>Quick Navigation</h2>
+      <div class="docs-table-wrap">
+        <table class="docs-table">
+          <thead><tr><th>Page</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><a href="usage.html">Usage Guide</a></td><td>Runner, Proxy Manager, Config Manager, Settings</td></tr>
+            <tr><td><a href="stacker.html">Stacker &amp; Blocks</a></td><td>All block types with commands, examples, and output variables</td></tr>
+            <tr><td><a href="variables.html">Variables &amp; BotData</a></td><td>Automatic variables, <code>&lt;ERROR&gt;</code>, Single vs List, capture flag</td></tr>
+            <tr><td><a href="loliscript.html">LoliScript Reference</a></td><td>Full syntax: IF, JUMP, SET, LOG, block keywords</td></tr>
+            <tr><td><a href="remote.html">Remote API</a></td><td>REST API for remote control and integration</td></tr>
+            <tr><td><a href="examples.html">Examples</a></td><td>Real-world LoliScript examples for common use-cases</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /docs-content-inner -->
+  </main>
+</div><!-- /docs-layout -->
+
+<footer class="docs-footer">
+  <span>OBM2 Pro &mdash; OpenBullet M2 Pro Documentation</span>
+  <span><a href="https://github.com/ObM2/ObM2Pro">GitHub</a> &middot; <a href="contribute.html">Contribute</a></span>
+</footer>
+
+<button id="back-to-top" title="Back to top">&#8679;</button>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

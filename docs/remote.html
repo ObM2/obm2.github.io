@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Remote API — OBM2 Pro</title>
+  <meta name="description" content="OBM2 Pro Remote API: configuration, endpoints, authentication, and remote runner control."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap"/>
+  <link rel="stylesheet" href="../assets/css/docs.css"/>
+</head>
+<body>
+
+<header class="site-header">
+  <button class="sidebar-toggle" id="sidebar-toggle">&#9776;</button>
+  <a class="logo" href="index.html"><img src="../M2Logo.png" alt="OBM2 Pro"/>OBM2 Pro<span class="version-badge">v3.1.2</span></a>
+  <nav class="header-nav">
+    <a href="index.html">Home</a><a href="usage.html">Usage</a><a href="stacker.html">Stacker</a>
+    <a href="variables.html">Variables</a><a href="loliscript.html">LoliScript</a>
+    <a href="remote.html" class="active">Remote API</a><a href="examples.html">Examples</a>
+  </nav>
+  <div class="header-spacer"></div>
+  <div class="header-search">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" id="search-input" placeholder="Search docs…" autocomplete="off"/>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</header>
+
+<div class="docs-layout">
+  <aside class="docs-sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">On this page</div>
+      <a class="sidebar-link" href="#about" data-target="about">About</a>
+      <a class="sidebar-link" href="#setup" data-target="setup">Setup &amp; Configuration</a>
+      <a class="sidebar-link" href="#running" data-target="running">Running the API</a>
+      <a class="sidebar-link" href="#auth" data-target="auth">Authentication</a>
+      <a class="sidebar-link" href="#endpoints" data-target="endpoints">Endpoints</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Navigation</div>
+      <a class="sidebar-link" href="loliscript.html">&#8592; LoliScript</a>
+      <a class="sidebar-link" href="examples.html">Examples &#8594;</a>
+    </div>
+  </aside>
+
+  <main class="docs-content">
+    <div class="docs-content-inner">
+      <div class="breadcrumb"><a href="index.html">Docs</a><span class="sep">/</span><span>Remote API</span></div>
+      <h1>Remote API</h1>
+      <p class="page-subtitle">The Remote API is a separate ASP.NET Core service that exposes OBM2 Pro functionality over HTTP, enabling integration with external tools and remote runner management.</p>
+
+      <section class="block-section" id="about">
+        <h2>About</h2>
+        <p>The Remote API runs as a standalone process alongside OBM2 Pro. It provides endpoints for starting/stopping runners, querying hit statistics, and managing configs and proxies remotely.</p>
+        <div class="callout callout-warning">
+          <span class="callout-icon">&#9888;</span>
+          <p>The Remote API should only be exposed on a trusted network or behind a reverse proxy with TLS. Never expose it directly to the public internet without additional access controls.</p>
+        </div>
+      </section>
+
+      <section class="block-section" id="setup">
+        <h2>Setup &amp; Configuration</h2>
+        <p>Configuration is stored in <code>appsettings.json</code> next to the API executable:</p>
+        <div class="code-wrapper">
+          <pre><code>{
+  "ConnectionStrings": {
+    "DefaultConnection": "Filename=hits.db"
+  },
+  "configFolder": "C:\\OBM2\\Configs",
+  "secretKey": "your-secret-key-here",
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  }
+}</code></pre>
+        </div>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Key</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><code>DefaultConnection</code></td><td>Path to the LiteDB hits database</td></tr>
+              <tr><td><code>configFolder</code></td><td>Directory containing <code>.loli</code> config files</td></tr>
+              <tr><td><code>secretKey</code></td><td>Shared secret for JWT authentication (change this!)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="block-section" id="running">
+        <h2>Running the API</h2>
+        <div class="code-wrapper">
+          <pre><code>dotnet ./OpenBulletAPI.dll --urls "http://0.0.0.0:5000"</code></pre>
+        </div>
+        <p>The admin panel is then accessible at <code>http://&lt;host&gt;:5000/admin</code>. The default port is <code>5000</code>. Configure a different port in <code>Settings → Remote → Port</code>.</p>
+      </section>
+
+      <section class="block-section" id="auth">
+        <h2>Authentication</h2>
+        <p>The API uses <strong>JWT bearer token</strong> authentication. Obtain a token by POSTing credentials to <code>/api/auth/login</code>:</p>
+        <div class="code-wrapper">
+          <pre><code>POST /api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "your-password"
+}
+
+# Response:
+{
+  "token": "eyJhbGci..."
+}</code></pre>
+        </div>
+        <p>Include the token in subsequent requests as a Bearer header:</p>
+        <div class="code-wrapper">
+          <pre><code>Authorization: Bearer eyJhbGci...</code></pre>
+        </div>
+      </section>
+
+      <section class="block-section" id="endpoints">
+        <h2>Key Endpoints</h2>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><code>POST</code></td><td><code>/api/auth/login</code></td><td>Obtain JWT token</td></tr>
+              <tr><td><code>GET</code></td><td><code>/api/configs</code></td><td>List available configs</td></tr>
+              <tr><td><code>GET</code></td><td><code>/api/hits</code></td><td>Query hits with filters</td></tr>
+              <tr><td><code>POST</code></td><td><code>/api/runner/start</code></td><td>Start a runner with a config and wordlist</td></tr>
+              <tr><td><code>POST</code></td><td><code>/api/runner/stop</code></td><td>Stop the running runner</td></tr>
+              <tr><td><code>GET</code></td><td><code>/api/runner/status</code></td><td>Get runner progress and statistics</td></tr>
+              <tr><td><code>GET</code></td><td><code>/api/proxies</code></td><td>List loaded proxies</td></tr>
+              <tr><td><code>POST</code></td><td><code>/api/proxies</code></td><td>Upload a new proxy list</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout callout-info">
+          <span class="callout-icon">&#8505;</span>
+          <p>Hit exports via the API return a ZIP archive containing a plain-text file. The format matches the export format configured in Settings.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<footer class="docs-footer">
+  <span>OBM2 Pro &mdash; OpenBullet M2 Pro Documentation</span>
+  <span><a href="https://github.com/ObM2/ObM2Pro">GitHub</a> &middot; <a href="contribute.html">Contribute</a></span>
+</footer>
+<button id="back-to-top" title="Back to top">&#8679;</button>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

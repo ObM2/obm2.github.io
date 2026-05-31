@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Variables &amp; BotData — OBM2 Pro</title>
+  <meta name="description" content="Reference for OBM2 Pro BotData variables: automatic variables, ERROR, Single vs List, capture flag, and context-aware variable suggestions."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap"/>
+  <link rel="stylesheet" href="../assets/css/docs.css"/>
+</head>
+<body>
+
+<header class="site-header">
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button>
+  <a class="logo" href="index.html">
+    <img src="../M2Logo.png" alt="OBM2 Pro"/>
+    OBM2 Pro
+    <span class="version-badge">v3.1.2</span>
+  </a>
+  <nav class="header-nav">
+    <a href="index.html">Home</a>
+    <a href="usage.html">Usage</a>
+    <a href="stacker.html">Stacker</a>
+    <a href="variables.html" class="active">Variables</a>
+    <a href="loliscript.html">LoliScript</a>
+    <a href="remote.html">Remote API</a>
+    <a href="examples.html">Examples</a>
+  </nav>
+  <div class="header-spacer"></div>
+  <div class="header-search">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" id="search-input" placeholder="Search docs…" autocomplete="off"/>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</header>
+
+<div class="docs-layout">
+  <aside class="docs-sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">On this page</div>
+      <a class="sidebar-link" href="#botdata" data-target="botdata">BotData Overview</a>
+      <a class="sidebar-link" href="#automatic" data-target="automatic">Automatic Variables</a>
+      <a class="sidebar-link" href="#error-var" data-target="error-var">&lt;ERROR&gt; Variable</a>
+      <a class="sidebar-link" href="#types" data-target="types">Single vs List</a>
+      <a class="sidebar-link" href="#capture" data-target="capture">Capture Flag</a>
+      <a class="sidebar-link" href="#context" data-target="context">Context-Aware Suggestions</a>
+      <a class="sidebar-link" href="#syntax" data-target="syntax">Variable Syntax</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Navigation</div>
+      <a class="sidebar-link" href="stacker.html">&#8592; Stacker</a>
+      <a class="sidebar-link" href="loliscript.html">LoliScript &#8594;</a>
+    </div>
+  </aside>
+
+  <main class="docs-content">
+    <div class="docs-content-inner">
+
+      <div class="breadcrumb">
+        <a href="index.html">Docs</a><span class="sep">/</span><span>Variables &amp; BotData</span>
+      </div>
+
+      <h1>Variables &amp; BotData</h1>
+      <p class="page-subtitle">BotData is the shared state object for a single bot execution. Every variable produced by a block lives in BotData and is accessible by all subsequent blocks via <code>&lt;varName&gt;</code> syntax.</p>
+
+      <!-- BotData -->
+      <section class="block-section" id="botdata">
+        <h2>BotData Overview</h2>
+        <p>Each bot run has its own <strong>BotData</strong> instance, isolated from other bots running concurrently. BotData holds:</p>
+        <ul>
+          <li>All variables (automatic and user-defined)</li>
+          <li>The current bot status (<code>NONE</code>, <code>SUCCESS</code>, <code>FAILURE</code>, etc.)</li>
+          <li>Cookie jar and session objects for HTTP, IMAP, POP3, SMTP, FTP</li>
+          <li>The log for the current run</li>
+        </ul>
+        <p>Variables in BotData persist for the entire script run and are cleared when the bot finishes.</p>
+      </section>
+
+      <!-- Automatic Variables -->
+      <section class="block-section" id="automatic">
+        <h2>Automatic Variables</h2>
+        <p>These variables are set automatically after certain blocks execute. They are always available in Keycheck and Parse combo-boxes.</p>
+
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Variable</th><th>Set by</th><th>Content</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="var-badge">&lt;SOURCE&gt;</span></td>
+                <td>HTTP Request, TLS Request, Navigate (Selenium)</td>
+                <td>Response body decoded as UTF-8 text. For Selenium, this is the page HTML.</td>
+              </tr>
+              <tr>
+                <td><span class="var-badge">&lt;RESPONSECODE&gt;</span></td>
+                <td>HTTP Request, TLS Request</td>
+                <td>HTTP status code as a string, e.g. <code>"200"</code>, <code>"403"</code>.</td>
+              </tr>
+              <tr>
+                <td><span class="var-badge">&lt;ADDRESS&gt;</span></td>
+                <td>HTTP Request, TLS Request, Navigate</td>
+                <td>Final URL after all redirects. For Selenium, the current page URL.</td>
+              </tr>
+              <tr>
+                <td><span class="var-badge">&lt;HEADERS(*)&gt;</span></td>
+                <td>HTTP Request, TLS Request</td>
+                <td>All response headers concatenated as a single string.</td>
+              </tr>
+              <tr>
+                <td><span class="var-badge">&lt;HEADERS{name}&gt;</span></td>
+                <td>HTTP Request, TLS Request</td>
+                <td>A specific response header by name, e.g. <code>&lt;HEADERS{Content-Type}&gt;</code>.</td>
+              </tr>
+              <tr>
+                <td><span class="var-badge">&lt;COOKIES(*)&gt;</span></td>
+                <td>HTTP Request, TLS Request</td>
+                <td>All cookies as a string.</td>
+              </tr>
+              <tr>
+                <td><span class="var-badge">&lt;COOKIES{name}&gt;</span></td>
+                <td>HTTP Request, TLS Request</td>
+                <td>A specific cookie by name.</td>
+              </tr>
+              <tr>
+                <td><span class="var-badge">&lt;ERROR&gt;</span></td>
+                <td>Any block that throws an exception</td>
+                <td>See below.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ERROR -->
+      <section class="block-section" id="error-var">
+        <h2>The &lt;ERROR&gt; Variable</h2>
+        <p><span class="var-badge">&lt;ERROR&gt;</span> is a special hidden variable that is set whenever any block throws an unhandled exception during execution.</p>
+
+        <h3>How it works</h3>
+        <ol>
+          <li>A block's <code>Process()</code> method throws an exception.</li>
+          <li>LoliScript catches the exception and writes <code>ex.Message</code> to <code>BotData.ErrorMessage</code>.</li>
+          <li><code>BotData.ErrorMessage</code> writes the value into the <code>"ERROR"</code> hidden variable.</li>
+          <li>Subsequent blocks (especially Keycheck) can read <code>&lt;ERROR&gt;</code> like any other variable.</li>
+        </ol>
+
+        <h3>Key Difference: HTTP vs Protocol Blocks</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Block Type</th><th>On Exception</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>HTTP Request, Captcha, BypassCF</td>
+                <td>Sets <code>&lt;ERROR&gt;</code>, sets bot status to <code>ERROR</code>, <strong>stops script</strong></td>
+              </tr>
+              <tr>
+                <td>IMAP, POP3, SMTP, FTP, TCP</td>
+                <td>Sets <code>&lt;ERROR&gt;</code>, <strong>script continues</strong> — use Keycheck to classify</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-tip">
+          <span class="callout-icon">&#128161;</span>
+          <p>Always place a Keycheck immediately after IMAP / POP3 / SMTP / FTP blocks to handle both success and error cases. Check <code>&lt;ERROR&gt;</code> for strings like <code>"Authentication failed"</code>, <code>"Too many connections"</code>, <code>"535"</code>, etc.</p>
+        </div>
+
+        <h3>Example</h3>
+        <div class="code-wrapper">
+          <pre><code>IMAP Connect "imap.libero.it" "993" (UseSSL=True) 30000
+IMAP Login "&lt;email&gt;" "&lt;pass&gt;"
+KEYCHECK
+  KEYCHAIN Failure OR
+    KEY "&lt;ERROR&gt;" Contains "Authentication failed"
+  KEYCHAIN Ban OR
+    KEY "&lt;ERROR&gt;" Contains "Too many"
+  KEYCHAIN Success OR
+    KEY "&lt;ERROR&gt;" DoesNotExist</code></pre>
+        </div>
+      </section>
+
+      <!-- Types -->
+      <section class="block-section" id="types">
+        <h2>Single vs List Variables</h2>
+        <p>Variables in BotData have one of two types:</p>
+
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Type</th><th>Access syntax</th><th>Set by</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="pill pill-single">Single</span></td>
+                <td><code>&lt;varName&gt;</code></td>
+                <td>Most blocks — HTTP response, IMAP count, Parse (first match), Function output</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-list">List</span></td>
+                <td><code>&lt;varName[0]&gt;</code> — first item<br/><code>&lt;varName[*]&gt;</code> — all items joined</td>
+                <td>Parse with "List" output, IMAP ListFolders, FTP ListFiles, Function Split</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Accessing List Items</h3>
+        <div class="code-wrapper">
+          <pre><code>PARSE &lt;SOURCE&gt; CSS ".item" ATTRIBUTE:"innerText" LIST -> "items"
+
+# Use first item
+REQUEST GET "https://api.example.com/&lt;items[0]&gt;"
+
+# Use all items joined by space (for logging or keycheck)
+KEYCHECK
+  KEYCHAIN Success OR
+    KEY "&lt;items[*]&gt;" Contains "premium"</code></pre>
+        </div>
+      </section>
+
+      <!-- Capture -->
+      <section class="block-section" id="capture">
+        <h2>Capture Flag</h2>
+        <p>Variables can be marked as <strong>captured</strong>. Captured variables are saved alongside the hit in the Hits DB when the bot status is <code>SUCCESS</code> or a capture-enabled <code>CUSTOM</code> status.</p>
+        <p>In the Stacker UI, enable the capture toggle on any output variable field. In LoliScript, add <code>CAP</code> at the end of the variable name:</p>
+        <div class="code-wrapper">
+          <pre><code>PARSE &lt;SOURCE&gt; JSON "user.plan" -> "planType" CAP
+PARSE &lt;SOURCE&gt; JSON "user.balance" -> "balance" CAP</code></pre>
+        </div>
+        <p>Both <code>planType</code> and <code>balance</code> will appear in the Hits DB entry for this bot run.</p>
+      </section>
+
+      <!-- Context -->
+      <section class="block-section" id="context">
+        <h2>Context-Aware Variable Suggestions</h2>
+        <p>OBM2 Pro analyzes all blocks <em>above</em> the currently selected block in the Stacker and extracts the output variable names. These names are offered as suggestions in combo-box dropdowns throughout the block UI.</p>
+
+        <h3>How Extraction Works</h3>
+        <p>The <code>StackVariableExtractor</code> helper (in <code>OpenBullet/Helpers/</code>) inspects each block in order via reflection, extracting:</p>
+        <ul>
+          <li><code>VariableName</code> — Parse, Function, IMAP, FTP, POP3</li>
+          <li><code>OutputVariable</code> — HTTP Request, TLS Request</li>
+          <li><code>VarName</code> — Utility</li>
+        </ul>
+        <p>Captcha blocks always contribute the fixed names: <code>CAPTCHAID</code>, <code>SOLUTION</code>, <code>GT_CHALLENGE</code>, <code>GT_VALIDATE</code>, <code>GT_SECCODE</code>.</p>
+
+        <div class="callout callout-info">
+          <span class="callout-icon">&#8505;</span>
+          <p>Suggestions update <strong>every time you select a block</strong> in the Stacker, not only on initial load. If you add a new Parse block above the current one, deselect and reselect the block to refresh the dropdown.</p>
+        </div>
+      </section>
+
+      <!-- Syntax -->
+      <section class="block-section" id="syntax">
+        <h2>Variable Syntax Reference</h2>
+
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Syntax</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><code>&lt;varName&gt;</code></td><td>Value of a Single variable</td></tr>
+              <tr><td><code>&lt;varName[0]&gt;</code></td><td>First element of a List variable</td></tr>
+              <tr><td><code>&lt;varName[2]&gt;</code></td><td>Third element (0-based index)</td></tr>
+              <tr><td><code>&lt;varName[*]&gt;</code></td><td>All elements of a List joined by space</td></tr>
+              <tr><td><code>&lt;SOURCE&gt;</code></td><td>Last HTTP/browser response body</td></tr>
+              <tr><td><code>&lt;RESPONSECODE&gt;</code></td><td>Last HTTP status code</td></tr>
+              <tr><td><code>&lt;ADDRESS&gt;</code></td><td>Last final URL</td></tr>
+              <tr><td><code>&lt;HEADERS(*)&gt;</code></td><td>All response headers as string</td></tr>
+              <tr><td><code>&lt;HEADERS{X-Auth}&gt;</code></td><td>Specific header value</td></tr>
+              <tr><td><code>&lt;COOKIES(*)&gt;</code></td><td>All cookies as string</td></tr>
+              <tr><td><code>&lt;COOKIES{session}&gt;</code></td><td>Specific cookie value</td></tr>
+              <tr><td><code>&lt;ERROR&gt;</code></td><td>Last exception message (empty if no error)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Variable substitution is performed by <code>ReplaceValues()</code> in <code>BlockBase</code> before every field is used in a request or condition. This means you can embed variables in URLs, POST bodies, headers, and key values.</p>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<footer class="docs-footer">
+  <span>OBM2 Pro &mdash; OpenBullet M2 Pro Documentation</span>
+  <span><a href="https://github.com/ObM2/ObM2Pro">GitHub</a> &middot; <a href="contribute.html">Contribute</a></span>
+</footer>
+
+<button id="back-to-top" title="Back to top">&#8679;</button>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

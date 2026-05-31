@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Usage Guide — OBM2 Pro</title>
+  <meta name="description" content="Complete usage guide for OBM2 Pro: Runner, Proxy Manager, Config Manager, Wordlist, Settings."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap"/>
+  <link rel="stylesheet" href="../assets/css/docs.css"/>
+</head>
+<body>
+
+<header class="site-header">
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button>
+  <a class="logo" href="index.html">
+    <img src="../M2Logo.png" alt="OBM2 Pro"/>
+    OBM2 Pro
+    <span class="version-badge">v3.1.2</span>
+  </a>
+  <nav class="header-nav">
+    <a href="index.html">Home</a>
+    <a href="usage.html" class="active">Usage</a>
+    <a href="stacker.html">Stacker</a>
+    <a href="variables.html">Variables</a>
+    <a href="loliscript.html">LoliScript</a>
+    <a href="remote.html">Remote API</a>
+    <a href="examples.html">Examples</a>
+  </nav>
+  <div class="header-spacer"></div>
+  <div class="header-search">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" id="search-input" placeholder="Search docs…" autocomplete="off"/>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</header>
+
+<div class="docs-layout">
+
+  <aside class="docs-sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">On this page</div>
+      <a class="sidebar-link" href="#before-start" data-target="before-start">Before You Start</a>
+      <a class="sidebar-link" href="#getting-started" data-target="getting-started">Getting Started</a>
+      <a class="sidebar-link" href="#runner" data-target="runner">Runner Manager</a>
+      <a class="sidebar-link" href="#proxy" data-target="proxy">Proxy Manager</a>
+      <a class="sidebar-link" href="#wordlist" data-target="wordlist">Wordlist Manager</a>
+      <a class="sidebar-link" href="#config" data-target="config">Config Manager</a>
+      <a class="sidebar-link" href="#hitsdb" data-target="hitsdb">Hits DB</a>
+      <a class="sidebar-link" href="#tools" data-target="tools">Tools</a>
+      <a class="sidebar-link" href="#settings" data-target="settings">Settings</a>
+      <a class="sidebar-link" href="#environment" data-target="environment">Environment Variables</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Navigation</div>
+      <a class="sidebar-link" href="index.html">&#8592; Home</a>
+      <a class="sidebar-link" href="stacker.html">Stacker &amp; Blocks &#8594;</a>
+    </div>
+  </aside>
+
+  <main class="docs-content">
+    <div class="docs-content-inner">
+
+      <div class="breadcrumb">
+        <a href="index.html">Docs</a>
+        <span class="sep">/</span>
+        <span>Usage Guide</span>
+      </div>
+
+      <h1>Usage Guide</h1>
+      <p class="page-subtitle">Everything you need to know about running OBM2 Pro, managing proxies, configs, and wordlists.</p>
+
+      <!-- Before you start -->
+      <section class="block-section" id="before-start">
+        <h2>Before You Start</h2>
+        <p>OBM2 Pro is a web-testing suite intended for <strong>authorized security testing, scraping, and automation</strong>.
+        Use it only against systems you own or have explicit written permission to test.</p>
+        <div class="callout callout-warning">
+          <span class="callout-icon">&#9888;</span>
+          <p>By using this software you agree that you are solely responsible for any actions performed with it.
+          The authors assume no liability for misuse.</p>
+        </div>
+      </section>
+
+      <!-- Getting Started -->
+      <section class="block-section" id="getting-started">
+        <h2>Getting Started</h2>
+        <p>Launch <code>OpenBullet.exe</code>. The main menu appears with the following sections accessible from the left navigation rail:</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Section</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>Runner</td><td>Execute configs against wordlists with multiple bots</td></tr>
+              <tr><td>Proxy Manager</td><td>Import, test, and manage proxy lists</td></tr>
+              <tr><td>Wordlist Manager</td><td>Register wordlist files for use in runners</td></tr>
+              <tr><td>Config Manager</td><td>Create, edit, and organize LoliScript configs</td></tr>
+              <tr><td>Hits DB</td><td>Browse and export captured hits</td></tr>
+              <tr><td>Tools</td><td>Hash, regex, wordlist, domain scanner, and more</td></tr>
+              <tr><td>Settings</td><td>Global application settings</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>Main menu screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- Runner -->
+      <section class="block-section" id="runner">
+        <h2>Runner Manager</h2>
+        <p>The Runner executes a selected config against a wordlist using a configurable number of bots (threads).</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Setting</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>Config</td><td>The LoliScript config to run</td></tr>
+              <tr><td>Wordlist</td><td>Input data file (one entry per line)</td></tr>
+              <tr><td>Bots</td><td>Number of concurrent threads</td></tr>
+              <tr><td>Proxy Pool</td><td>Proxy list to rotate through</td></tr>
+              <tr><td>Skip</td><td>Number of entries to skip from the start</td></tr>
+              <tr><td>Start / Stop / Pause</td><td>Execution controls</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Bot Statuses</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Status</th><th>Color</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><strong>SUCCESS</strong></td><td style="color:#22C55E">Green</td><td>All success keychains matched</td></tr>
+              <tr><td><strong>FAILURE</strong></td><td style="color:#EF4444">Red</td><td>A failure keychain matched</td></tr>
+              <tr><td><strong>BAN</strong></td><td style="color:#F59E0B">Amber</td><td>A ban keychain matched (proxy rotated)</td></tr>
+              <tr><td><strong>RETRY</strong></td><td style="color:#06B6D4">Cyan</td><td>A retry keychain matched (re-queued)</td></tr>
+              <tr><td><strong>ERROR</strong></td><td style="color:#9CA3AF">Gray</td><td>Unhandled exception during execution</td></tr>
+              <tr><td><strong>CUSTOM</strong></td><td style="color:#A78BFA">Violet</td><td>Custom keychain defined in config</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>Runner Manager screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- Proxy Manager -->
+      <section class="block-section" id="proxy">
+        <h2>Proxy Manager</h2>
+        <p>Import and manage proxies from files, paste, or an API endpoint. OBM2 Pro supports multiple proxy types:</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Type</th><th>Format</th></tr></thead>
+            <tbody>
+              <tr><td>HTTP / HTTPS</td><td><code>host:port</code> or <code>host:port:user:pass</code></td></tr>
+              <tr><td>Socks4</td><td><code>host:port</code></td></tr>
+              <tr><td>Socks4a</td><td><code>host:port</code></td></tr>
+              <tr><td>Socks5</td><td><code>host:port</code> or <code>host:port:user:pass</code></td></tr>
+              <tr><td>Proxy Chains</td><td>Multiple proxies chained for anonymity</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Use the <strong>Check</strong> button to test proxy connectivity. Dead proxies are highlighted in red and can be removed in bulk.</p>
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>Proxy Manager screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- Wordlist -->
+      <section class="block-section" id="wordlist">
+        <h2>Wordlist Manager</h2>
+        <p>Register wordlist files so they appear in the Runner's wordlist picker. Each wordlist has a <strong>type</strong> that configs can check against.</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Field</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>Name</td><td>Display name shown in the Runner</td></tr>
+              <tr><td>Path</td><td>Absolute path to the text file</td></tr>
+              <tr><td>Type</td><td>e.g. <code>Default</code>, <code>Credentials</code>, <code>Email:Password</code></td></tr>
+              <tr><td>Purpose</td><td>Free-text description</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Config Manager -->
+      <section class="block-section" id="config">
+        <h2>Config Manager</h2>
+        <p>Browse, create, duplicate, and delete LoliScript configs. Configs are stored as <code>.loli</code> or <code>.anom</code> files in the configured configs folder.</p>
+        <p>Open a config in the <strong>Stacker</strong> (visual block editor) or the <strong>LoliScript editor</strong> (text mode). Both views stay in sync.</p>
+        <div class="callout callout-tip">
+          <span class="callout-icon">&#128161;</span>
+          <p>Use the search bar in Config Manager to filter configs by name. Results update live as you type.</p>
+        </div>
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>Config Manager screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- Hits DB -->
+      <section class="block-section" id="hitsdb">
+        <h2>Hits DB</h2>
+        <p>All captured hits (bot status = SUCCESS or CUSTOM with isCapture=true variables) are stored in the built-in <strong>LiteDB</strong> database.</p>
+        <p>From Hits DB you can:</p>
+        <ul>
+          <li>Filter hits by config name, date range, or custom data</li>
+          <li>Export hits to CSV or plain text</li>
+          <li>Delete individual hits or purge all hits for a config</li>
+          <li>View captured variables per hit</li>
+        </ul>
+      </section>
+
+      <!-- Tools -->
+      <section class="block-section" id="tools">
+        <h2>Tools</h2>
+        <p>Built-in utilities accessible from the Tools section:</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Tool</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>Hash</td><td>Compute MD5, SHA1, SHA256, SHA512 hashes</td></tr>
+              <tr><td>Regex</td><td>Test regular expressions against sample text</td></tr>
+              <tr><td>List Generator</td><td>Generate wordlists from patterns or rules</td></tr>
+              <tr><td>Wordlist Tools</td><td>Merge, deduplicate, split, and convert wordlists</td></tr>
+              <tr><td>Domain Scanner</td><td>Enumerate subdomains and DNS records</td></tr>
+              <tr><td>Convert Tools</td><td>Base64, URL encoding, hex conversion</td></tr>
+              <tr><td>Cookie Converter</td><td>Convert browser cookie exports to usable formats</td></tr>
+              <tr><td>Database</td><td>Raw LiteDB browser for hits and config data</td></tr>
+              <tr><td>Selenium Tools</td><td>WebDriver management and browser testing</td></tr>
+              <tr><td>Tesseract Downloads</td><td>Download OCR language data for image captcha solving</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Settings -->
+      <section class="block-section" id="settings">
+        <h2>Settings</h2>
+        <p>Global application settings are split into tabs:</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Tab</th><th>Key Options</th></tr></thead>
+            <tbody>
+              <tr><td>General</td><td>Configs folder, hits folder, DB path, theme</td></tr>
+              <tr><td>Runner</td><td>Default bots count, ban keys, retry on ban, proxy rotation</td></tr>
+              <tr><td>Proxy</td><td>TLS Proxy port, timeout, connect timeout</td></tr>
+              <tr><td>Captcha</td><td>API keys for captcha solving services</td></tr>
+              <tr><td>Selenium</td><td>WebDriver path, default browser, headless mode</td></tr>
+              <tr><td>Remote</td><td>Remote API port and secret key</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout callout-info">
+          <span class="callout-icon">&#8505;</span>
+          <p><strong>TLS Proxy port</strong> must match the port configured in the TLS Request block.
+          Default is <code>8080</code>. The proxy process (<code>tls-proxy.exe</code>) starts automatically with OBM2 Pro.</p>
+        </div>
+      </section>
+
+      <!-- Environment Variables -->
+      <section class="block-section" id="environment">
+        <h2>Environment Variables</h2>
+        <p>These special variables can be referenced inside configs and affect runner behavior:</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Variable</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><code>WLTYPE</code></td><td>Type of the current wordlist (e.g. <code>Credentials</code>). Configs can check this to validate input format.</td></tr>
+              <tr><td><code>CUSTOMKC</code></td><td>Name of a custom keychain to use for this run. Allows dynamic keychain selection.</td></tr>
+              <tr><td><code>EXPFORMAT</code></td><td>Export format for hits. Overrides the default hit format string.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<footer class="docs-footer">
+  <span>OBM2 Pro &mdash; OpenBullet M2 Pro Documentation</span>
+  <span><a href="https://github.com/ObM2/ObM2Pro">GitHub</a> &middot; <a href="contribute.html">Contribute</a></span>
+</footer>
+
+<button id="back-to-top" title="Back to top">&#8679;</button>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

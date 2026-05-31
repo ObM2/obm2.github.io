@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stacker &amp; Blocks — OBM2 Pro</title>
+  <meta name="description" content="Complete reference for all OBM2 Pro stacker blocks: HTTP Request, TLS Request, Keycheck, Parse, Function, Captcha, IMAP, POP3, SMTP, FTP, Selenium, Utility, TCP."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap"/>
+  <link rel="stylesheet" href="../assets/css/docs.css"/>
+</head>
+<body>
+
+<header class="site-header">
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button>
+  <a class="logo" href="index.html">
+    <img src="../M2Logo.png" alt="OBM2 Pro"/>
+    OBM2 Pro
+    <span class="version-badge">v3.1.2</span>
+  </a>
+  <nav class="header-nav">
+    <a href="index.html">Home</a>
+    <a href="usage.html">Usage</a>
+    <a href="stacker.html" class="active">Stacker</a>
+    <a href="variables.html">Variables</a>
+    <a href="loliscript.html">LoliScript</a>
+    <a href="remote.html">Remote API</a>
+    <a href="examples.html">Examples</a>
+  </nav>
+  <div class="header-spacer"></div>
+  <div class="header-search">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" id="search-input" placeholder="Search docs…" autocomplete="off"/>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</header>
+
+<div class="docs-layout">
+
+  <!-- Sidebar -->
+  <aside class="docs-sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Stacker</div>
+      <a class="sidebar-link" href="#overview" data-target="overview">Overview</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Requests</div>
+      <a class="sidebar-link" href="#request" data-target="request">
+        <span class="block-dot" style="background:#F59E0B"></span> HTTP Request
+      </a>
+      <a class="sidebar-link" href="#tls-request" data-target="tls-request">
+        <span class="block-dot" style="background:#F59E0B"></span> TLS Request
+      </a>
+      <a class="sidebar-link" href="#tcp" data-target="tcp">
+        <span class="block-dot" style="background:#9CA3AF"></span> TCP
+      </a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Logic</div>
+      <a class="sidebar-link" href="#keycheck" data-target="keycheck">
+        <span class="block-dot" style="background:#8B5CF6"></span> Keycheck
+      </a>
+      <a class="sidebar-link" href="#parse" data-target="parse">
+        <span class="block-dot" style="background:#8B5CF6"></span> Parse
+      </a>
+      <a class="sidebar-link" href="#function" data-target="function">
+        <span class="block-dot" style="background:#8B5CF6"></span> Function
+      </a>
+      <a class="sidebar-link" href="#utility" data-target="utility">
+        <span class="block-dot" style="background:#9CA3AF"></span> Utility
+      </a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Email &amp; FTP</div>
+      <a class="sidebar-link" href="#imap" data-target="imap">
+        <span class="block-dot" style="background:#06B6D4"></span> IMAP
+      </a>
+      <a class="sidebar-link" href="#pop3" data-target="pop3">
+        <span class="block-dot" style="background:#F97316"></span> POP3
+      </a>
+      <a class="sidebar-link" href="#smtp" data-target="smtp">
+        <span class="block-dot" style="background:#10B981"></span> SMTP
+      </a>
+      <a class="sidebar-link" href="#ftp" data-target="ftp">
+        <span class="block-dot" style="background:#A78BFA"></span> FTP
+      </a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Browser</div>
+      <a class="sidebar-link" href="#browseraction" data-target="browseraction">
+        <span class="block-dot" style="background:#22C55E"></span> Browser Action
+      </a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Captcha</div>
+      <a class="sidebar-link" href="#captcha" data-target="captcha">
+        <span class="block-dot" style="background:#EF4444"></span> Captcha
+      </a>
+    </div>
+  </aside>
+
+  <!-- Content -->
+  <main class="docs-content">
+    <div class="docs-content-inner">
+
+      <div class="breadcrumb">
+        <a href="index.html">Docs</a>
+        <span class="sep">/</span>
+        <span>Stacker &amp; Blocks</span>
+      </div>
+
+      <h1>Stacker &amp; Blocks</h1>
+      <p class="page-subtitle">The Stacker is the visual editor for building LoliScript configs. Each block represents one logical operation. Blocks execute in order and share state via <a href="variables.html">BotData variables</a>.</p>
+
+      <!-- ── Overview ─────────────────────────────────────── -->
+      <section class="block-section" id="overview">
+        <h2>Overview</h2>
+        <p>Add blocks by clicking <strong>Add Block</strong> in the Stacker toolbar. Use the search box to filter by name. Blocks can be dragged to reorder them.</p>
+        <p>Each block produces output variables referenced as <code>&lt;varName&gt;</code>. Variables defined by previous blocks appear in combo-box dropdowns throughout the UI as you work.</p>
+        <div class="callout callout-info">
+          <span class="callout-icon">&#8505;</span>
+          <p>The Stacker and the LoliScript text editor stay in sync. You can switch between views at any time without losing data.</p>
+        </div>
+        <h3>Block Category Order</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Category</th><th>Blocks</th></tr></thead>
+            <tbody>
+              <tr><td>Requests</td><td>HTTP Request, TLS Request, FTP, IMAP, POP3, SMTP, TCP, WebSocket, CookieContainer, Cognito</td></tr>
+              <tr><td>Parsing</td><td>Parse, Function</td></tr>
+              <tr><td>Logic</td><td>Keycheck, Utility</td></tr>
+              <tr><td>Captcha</td><td>Captcha (all types)</td></tr>
+              <tr><td>Browser</td><td>Navigate, BrowserAction, ElementAction, ExecuteJS</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <!-- HTTP REQUEST                                        -->
+      <!-- ══════════════════════════════════════════════════ -->
+      <section class="block-section" id="request">
+        <div class="block-header">
+          <div class="block-icon block-amber">&#127760;</div>
+          <div class="block-header-text">
+            <h2>HTTP Request Block</h2>
+            <div class="block-desc">Sends HTTP/HTTPS requests and captures the response into BotData variables.</div>
+          </div>
+        </div>
+
+        <h3>Request Settings</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Field</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>Method</td><td><code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, <code>PATCH</code>, <code>HEAD</code>, <code>OPTIONS</code></td></tr>
+              <tr><td>URL</td><td>Target URL. Supports variable substitution: <code>https://example.com/&lt;username&gt;</code></td></tr>
+              <tr><td>Content-Type</td><td>Body encoding: <code>application/x-www-form-urlencoded</code>, <code>application/json</code>, <code>multipart/form-data</code>, <code>text/plain</code></td></tr>
+              <tr><td>Post Body</td><td>Request body. For multipart, use <code>name=value</code> pairs separated by newlines.</td></tr>
+              <tr><td>Cookie Jar</td><td>Enable to persist cookies across requests within the same bot run.</td></tr>
+              <tr><td>Follow Redirects</td><td>Automatically follow HTTP 3xx redirects.</td></tr>
+              <tr><td>Read Response Body</td><td>Decode the response body as UTF-8 text into <code>&lt;SOURCE&gt;</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Custom Headers</h3>
+        <p>Add one header per line in the format <code>Header-Name: value</code>. Variable substitution is supported in values.</p>
+        <div class="code-wrapper">
+          <pre><code>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+Accept-Language: en-US,en;q=0.9
+X-Custom-Token: &lt;token&gt;</code></pre>
+        </div>
+
+        <h3>Output Variables</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Variable</th><th>Type</th><th>Content</th></tr></thead>
+            <tbody>
+              <tr><td><span class="var-badge">&lt;SOURCE&gt;</span></td><td><span class="pill pill-single">Single</span></td><td>Response body as UTF-8 text</td></tr>
+              <tr><td><span class="var-badge">&lt;RESPONSECODE&gt;</span></td><td><span class="pill pill-single">Single</span></td><td>HTTP status code, e.g. <code>200</code></td></tr>
+              <tr><td><span class="var-badge">&lt;ADDRESS&gt;</span></td><td><span class="pill pill-single">Single</span></td><td>Final URL after redirects</td></tr>
+              <tr><td><span class="var-badge">&lt;HEADERS(*)&gt;</span></td><td><span class="pill pill-single">Single</span></td><td>All response headers as a string</td></tr>
+              <tr><td><span class="var-badge">&lt;HEADERS{name}&gt;</span></td><td><span class="pill pill-single">Single</span></td><td>Specific response header by name</td></tr>
+              <tr><td><span class="var-badge">&lt;COOKIES(*)&gt;</span></td><td><span class="pill pill-single">Single</span></td><td>All cookies as a string</td></tr>
+              <tr><td><span class="var-badge">&lt;COOKIES{name}&gt;</span></td><td><span class="pill pill-single">Single</span></td><td>Specific cookie by name</td></tr>
+              <tr><td><span class="var-badge">&lt;ERROR&gt;</span></td><td><span class="pill pill-single">Single</span></td><td>Exception message if the request throws an error</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>LoliScript Example</h3>
+        <div class="code-wrapper">
+          <pre><code>REQUEST GET "https://example.com/login"
+REQUEST POST "https://example.com/api/login" CONTENT-TYPE:"application/json" POSTDATA:"{\"user\":\"&lt;user&gt;\",\"pass\":\"&lt;pass&gt;\"}"</code></pre>
+        </div>
+
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>HTTP Request block screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <!-- TLS REQUEST                                         -->
+      <!-- ══════════════════════════════════════════════════ -->
+      <section class="block-section" id="tls-request">
+        <div class="block-header">
+          <div class="block-icon block-amber">&#128274;</div>
+          <div class="block-header-text">
+            <h2>TLS Request Block</h2>
+            <div class="block-desc">Sends requests through a local TLS proxy for native TLS fingerprint control, bypassing bot-detection systems that check JA3/JA4 signatures.</div>
+          </div>
+        </div>
+
+        <div class="callout callout-info">
+          <span class="callout-icon">&#8505;</span>
+          <p><strong>TLS Proxy</strong> is a companion process (<code>tls-proxy.exe</code>) that starts automatically with OBM2 Pro.
+          Its status is shown as a real-time badge in the block UI. If the proxy is unreachable, the request falls back to the ExtremeNet engine.</p>
+        </div>
+
+        <h3>Settings</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Field</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>Method / URL / Body</td><td>Same as HTTP Request block</td></tr>
+              <tr><td>TLS Profile</td><td>Fingerprint to impersonate: <code>Chrome</code>, <code>Firefox</code>, <code>Safari</code>, <code>Random</code></td></tr>
+              <tr><td>TLS Proxy Port</td><td>Port the TLS proxy listens on. Default: <code>8080</code>. Must match Settings → Proxy → TLS Proxy Port.</td></tr>
+              <tr><td>Custom Headers</td><td>Same format as HTTP Request</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Proxy Status Badge</h3>
+        <p>The block header shows a live badge:</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>State</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td style="color:#9CA3AF">Checking…</td><td>Initial probe in progress</td></tr>
+              <tr><td style="color:#22C55E">Active (Xms)</td><td>Proxy reachable, round-trip latency shown</td></tr>
+              <tr><td style="color:#EF4444">Unreachable</td><td>Proxy process not running or wrong port — fallback to ExtremeNet</td></tr>
+              <tr><td style="color:#6B7280">Disabled</td><td>TLS proxy disabled in settings</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Output Variables</h3>
+        <p>Identical to the <a href="#request">HTTP Request block</a>: <span class="var-badge">&lt;SOURCE&gt;</span>, <span class="var-badge">&lt;RESPONSECODE&gt;</span>, <span class="var-badge">&lt;ADDRESS&gt;</span>, <span class="var-badge">&lt;HEADERS(*)&gt;</span>, <span class="var-badge">&lt;COOKIES(*)&gt;</span>, <span class="var-badge">&lt;ERROR&gt;</span>.</p>
+
+        <h3>LoliScript Example</h3>
+        <div class="code-wrapper">
+          <pre><code>TLSREQUEST GET "https://target.com/api/check" TLSPROFILE:"Chrome"
+TLSREQUEST POST "https://target.com/api/login" TLSPROFILE:"Random" CONTENT-TYPE:"application/json" POSTDATA:"{\"email\":\"&lt;email&gt;\",\"password\":\"&lt;pass&gt;\"}"</code></pre>
+        </div>
+
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>TLS Request block screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <!-- TCP                                                 -->
+      <!-- ══════════════════════════════════════════════════ -->
+      <section class="block-section" id="tcp">
+        <div class="block-header">
+          <div class="block-icon block-gray">&#128268;</div>
+          <div class="block-header-text">
+            <h2>TCP Block</h2>
+            <div class="block-desc">Raw TCP socket communication for protocols not covered by HTTP.</div>
+          </div>
+        </div>
+
+        <div class="callout callout-warning">
+          <span class="callout-icon">&#9888;</span>
+          <p>Always use a <strong>Disconnect</strong> command before the config ends, or the TCP connection will leak across bot runs.</p>
+        </div>
+
+        <h3>Commands</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Command</th><th>Parameters</th><th>Output</th></tr></thead>
+            <tbody>
+              <tr><td>Connect</td><td><code>host</code>, <code>port</code>, <code>useSSL</code></td><td><span class="pill pill-none">—</span></td></tr>
+              <tr><td>Send</td><td><code>data</code></td><td><span class="pill pill-none">—</span></td></tr>
+              <tr><td>Receive</td><td><code>variableName</code></td><td><span class="pill pill-single">Single</span></td></tr>
+              <tr><td>Disconnect</td><td>—</td><td><span class="pill pill-none">—</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>LoliScript Example</h3>
+        <div class="code-wrapper">
+          <pre><code>TCP Connect "mail.example.com" "110" (UseSSL=False)
+TCP Receive "tcpResponse"
+TCP Send "+OK ready\r\n"
+TCP Disconnect</code></pre>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <!-- KEYCHECK                                            -->
+      <!-- ══════════════════════════════════════════════════ -->
+      <section class="block-section" id="keycheck">
+        <div class="block-header">
+          <div class="block-icon block-violet">&#128273;</div>
+          <div class="block-header-text">
+            <h2>Keycheck Block</h2>
+            <div class="block-desc">Evaluates conditions against BotData variables to set the bot's final status.</div>
+          </div>
+        </div>
+
+        <p>The Keycheck block contains one or more <strong>Keychains</strong>. A keychain defines a target status and a logical mode (<code>OR</code> / <code>AND</code>), and holds one or more <strong>Keys</strong> (conditions). If all conditions in a keychain are satisfied, the bot status is set and the script stops.</p>
+
+        <h3>Bot Statuses</h3>
+        <p>Available target statuses: <code>SUCCESS</code>, <code>FAILURE</code>, <code>BAN</code>, <code>RETRY</code>, <code>CUSTOM</code>.</p>
+
+        <h3>Key Operators</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Operator</th><th>Condition</th></tr></thead>
+            <tbody>
+              <tr><td><code>Contains</code></td><td>Left term contains the right term string</td></tr>
+              <tr><td><code>DoesNotContain</code></td><td>Left term does not contain the right term</td></tr>
+              <tr><td><code>Exists</code></td><td>Left term is non-empty</td></tr>
+              <tr><td><code>DoesNotExist</code></td><td>Left term is empty or null</td></tr>
+              <tr><td><code>EqualTo</code></td><td>Exact string match</td></tr>
+              <tr><td><code>NotEqualTo</code></td><td>String does not match</td></tr>
+              <tr><td><code>GreaterThan</code></td><td>Numeric comparison (&gt;)</td></tr>
+              <tr><td><code>LessThan</code></td><td>Numeric comparison (&lt;)</td></tr>
+              <tr><td><code>MatchesRegex</code></td><td>Left term matches a .NET regex pattern</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Left Term — Available Sources</h3>
+        <p>The left term (source) combo-box shows all available variables. Default fields always present:</p>
+        <p>
+          <span class="var-badge">&lt;SOURCE&gt;</span>
+          <span class="var-badge">&lt;HEADERS(*)&gt;</span>
+          <span class="var-badge">&lt;HEADERS{*}&gt;</span>
+          <span class="var-badge">&lt;COOKIES(*)&gt;</span>
+          <span class="var-badge">&lt;COOKIES{*}&gt;</span>
+          <span class="var-badge">&lt;RESPONSECODE&gt;</span>
+          <span class="var-badge">&lt;ADDRESS&gt;</span>
+          <span class="var-badge">&lt;ERROR&gt;</span>
+        </p>
+        <p>All variables produced by blocks <em>above</em> the Keycheck in the stacker are also available and update dynamically as you add or remove blocks.</p>
+
+        <div class="callout callout-tip">
+          <span class="callout-icon">&#128161;</span>
+          <p><strong>&lt;ERROR&gt;</strong> is set automatically when any block throws an exception. Email protocol blocks (IMAP, POP3, SMTP, FTP) do <em>not</em> stop the script on error — instead they write the exception message to <code>&lt;ERROR&gt;</code> and continue, so the Keycheck can classify the result.</p>
+        </div>
+
+        <h3>LoliScript Example</h3>
+        <div class="code-wrapper">
+          <pre><code>IMAP Connect "imap.gmail.com" "993" (UseSSL=True) 30000
+IMAP Login "&lt;email&gt;" "&lt;pass&gt;"
+IMAP SearchMails "UNSEEN" "unreadCount"
+KEYCHECK
+  KEYCHAIN Success OR
+    KEY "&lt;unreadCount&gt;" GreaterThan "0"
+  KEYCHAIN Failure OR
+    KEY "&lt;ERROR&gt;" Contains "Authentication failed"
+  KEYCHAIN Ban OR
+    KEY "&lt;ERROR&gt;" Contains "Too many connections"</code></pre>
+        </div>
+
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>Keycheck block screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <!-- PARSE                                               -->
+      <!-- ══════════════════════════════════════════════════ -->
+      <section class="block-section" id="parse">
+        <div class="block-header">
+          <div class="block-icon block-violet">&#129513;</div>
+          <div class="block-header-text">
+            <h2>Parse Block</h2>
+            <div class="block-desc">Extracts data from a variable using LR anchors, CSS selectors, JSONPath, or Regex.</div>
+          </div>
+        </div>
+
+        <h3>Parse Modes</h3>
+        <div class="cmd-tabs">
+          <span class="cmd-tab active">LR</span>
+          <span class="cmd-tab">CSS</span>
+          <span class="cmd-tab">JSON</span>
+          <span class="cmd-tab">REGEX</span>
+        </div>
+
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Mode</th><th>Description</th><th>Key Fields</th></tr></thead>
+            <tbody>
+              <tr><td><strong>LR</strong></td><td>Extract text between a left and right anchor string</td><td>Left anchor, Right anchor</td></tr>
+              <tr><td><strong>CSS</strong></td><td>Select HTML element with a CSS selector, then get an attribute or inner text</td><td>CSS Selector, Attribute</td></tr>
+              <tr><td><strong>JSON</strong></td><td>Extract a value from JSON using dot-notation path</td><td>JSON Path (e.g. <code>data.user.token</code>)</td></tr>
+              <tr><td><strong>REGEX</strong></td><td>Extract a capture group from a .NET regex pattern</td><td>Pattern, Group index</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Output Types</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Type</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><span class="pill pill-single">Single</span></td><td>First match stored as a scalar string variable</td></tr>
+              <tr><td><span class="pill pill-list">List</span></td><td>All matches stored as a list variable, accessed via <code>&lt;VAR[0]&gt;</code>, <code>&lt;VAR[*]&gt;</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Source Variable</h3>
+        <p>The dropdown shows all variables available from blocks above this one, plus the 8 defaults (<span class="var-badge">&lt;SOURCE&gt;</span>, <span class="var-badge">&lt;ERROR&gt;</span>, etc.).</p>
+
+        <h3>LoliScript Example</h3>
+        <div class="code-wrapper">
+          <pre><code>PARSE &lt;SOURCE&gt; LR "token\":\"" "\"" -> "authToken"
+PARSE &lt;SOURCE&gt; JSON "user.email" -> "userEmail"
+PARSE &lt;SOURCE&gt; CSS "#user-list li" ATTRIBUTE:"innerText" LIST -> "userList"
+PARSE &lt;SOURCE&gt; REGEX "(\d{4}-\d{4}-\d{4})" GROUP:1 -> "cardNumber"</code></pre>
+        </div>
+
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>Parse block screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <!-- FUNCTION                                            -->
+      <!-- ══════════════════════════════════════════════════ -->
+      <section class="block-section" id="function">
+        <div class="block-header">
+          <div class="block-icon block-violet">&#9881;</div>
+          <div class="block-header-text">
+            <h2>Function Block</h2>
+            <div class="block-desc">Applies one of 22 transformation functions to a variable and stores the result.</div>
+          </div>
+        </div>
+
+        <p>The <strong>Input String</strong> field is a combo-box: type any literal value or pick a variable from the dropdown. It supports all variables available from blocks above.</p>
+
+        <h3>Available Functions</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Function</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><code>ToUpperCase</code></td><td>Convert string to UPPER CASE</td></tr>
+              <tr><td><code>ToLowerCase</code></td><td>Convert string to lower case</td></tr>
+              <tr><td><code>Trim</code></td><td>Remove leading and trailing whitespace</td></tr>
+              <tr><td><code>GetLength</code></td><td>Return the character length as a string</td></tr>
+              <tr><td><code>Reverse</code></td><td>Reverse character order</td></tr>
+              <tr><td><code>Hash MD5</code></td><td>Compute MD5 hex digest</td></tr>
+              <tr><td><code>Hash SHA1</code></td><td>Compute SHA-1 hex digest</td></tr>
+              <tr><td><code>Hash SHA256</code></td><td>Compute SHA-256 hex digest</td></tr>
+              <tr><td><code>Hash SHA512</code></td><td>Compute SHA-512 hex digest</td></tr>
+              <tr><td><code>Base64Encode</code></td><td>Encode to Base64</td></tr>
+              <tr><td><code>Base64Decode</code></td><td>Decode from Base64</td></tr>
+              <tr><td><code>URLEncode</code></td><td>Percent-encode special characters</td></tr>
+              <tr><td><code>URLDecode</code></td><td>Decode percent-encoded characters</td></tr>
+              <tr><td><code>HTMLEncode</code></td><td>Encode HTML entities</td></tr>
+              <tr><td><code>HTMLDecode</code></td><td>Decode HTML entities</td></tr>
+              <tr><td><code>UnixTimeToDate</code></td><td>Convert Unix timestamp to date string</td></tr>
+              <tr><td><code>DateToUnixTime</code></td><td>Convert date string to Unix timestamp</td></tr>
+              <tr><td><code>Replace</code></td><td>Replace all occurrences of a substring</td></tr>
+              <tr><td><code>RegexReplace</code></td><td>Replace using a .NET regex pattern</td></tr>
+              <tr><td><code>Substring</code></td><td>Extract a portion of the string by index and length</td></tr>
+              <tr><td><code>RemoveHTML</code></td><td>Strip all HTML tags</td></tr>
+              <tr><td><code>Split</code></td><td>Split by delimiter into a List variable</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>List Operations</h3>
+        <p>When the input is a list variable and the function supports it, use <code>&lt;LIST[*]&gt;</code> to apply the function to every element.</p>
+
+        <h3>LoliScript Example</h3>
+        <div class="code-wrapper">
+          <pre><code>FUNCTION Hash MD5 "&lt;pass&gt;" -> "passHash"
+FUNCTION Base64Encode "&lt;email&gt;:&lt;pass&gt;" -> "basicAuth"
+FUNCTION Replace "&lt;SOURCE&gt;" OLD:"\\n" NEW:" " -> "cleaned"
+FUNCTION Split "&lt;SOURCE&gt;" SEP:"," LIST -> "items"</code></pre>
+        </div>
+
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>Function block screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <!-- UTILITY                                             -->
+      <!-- ══════════════════════════════════════════════════ -->
+      <section class="block-section" id="utility">
+        <div class="block-header">
+          <div class="block-icon block-gray">&#128295;</div>
+          <div class="block-header-text">
+            <h2>Utility Block</h2>
+            <div class="block-desc">Miscellaneous operations: variable manipulation, file I/O, delays, and conversions.</div>
+          </div>
+        </div>
+
+        <h3>Commands</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><code>Set</code></td><td>Assign a literal or variable value to a new variable</td></tr>
+              <tr><td><code>ClearCookies</code></td><td>Wipe the cookie jar for the current bot</td></tr>
+              <tr><td><code>RandomString</code></td><td>Generate a random string of given length and charset</td></tr>
+              <tr><td><code>RandomNumber</code></td><td>Generate a random integer between min and max</td></tr>
+              <tr><td><code>Wait</code></td><td>Pause execution for N milliseconds</td></tr>
+              <tr><td><code>ReadFile</code></td><td>Read file contents into a variable</td></tr>
+              <tr><td><code>WriteFile</code></td><td>Write a variable to a file (append or overwrite)</td></tr>
+              <tr><td><code>DeleteFile</code></td><td>Delete a file from disk</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>LoliScript Example</h3>
+        <div class="code-wrapper">
+          <pre><code>UTILITY Set "greeting" "Hello, &lt;username&gt;!"
+UTILITY RandomString "csrf" LENGTH:32 CHARSET:"alphanumeric"
+UTILITY Wait 1500</code></pre>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <!-- IMAP                                                -->
+      <!-- ══════════════════════════════════════════════════ -->
+      <section class="block-section" id="imap">
+        <div class="block-header">
+          <div class="block-icon block-cyan">&#128231;</div>
+          <div class="block-header-text">
+            <h2>IMAP Block</h2>
+            <div class="block-desc">Read and manage email via IMAP. Session persists across blocks in the same bot run.</div>
+          </div>
+        </div>
+
+        <div class="callout callout-info">
+          <span class="callout-icon">&#8505;</span>
+          <p>IMAP errors <strong>do not stop the script</strong>. Instead the exception message is written to <span class="var-badge">&lt;ERROR&gt;</span> and execution continues. Use a Keycheck immediately after to classify the result.</p>
+        </div>
+
+        <h3>Commands</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Command</th><th>Parameters</th><th>Output</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><code>Connect</code></td>
+                <td><code>host</code>, <code>port</code>, <code>useSSL</code>, <code>timeout (ms)</code></td>
+                <td><span class="pill pill-none">—</span></td>
+                <td>Default timeout: 30000 ms</td>
+              </tr>
+              <tr>
+                <td><code>Login</code></td>
+                <td><code>email</code>, <code>password</code></td>
+                <td><span class="pill pill-none">—</span></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><code>SearchMails</code></td>
+                <td><code>query</code> (IMAP search criteria), <code>variableName</code></td>
+                <td><span class="pill pill-single">Single</span> — match count</td>
+                <td>e.g. <code>UNSEEN</code>, <code>FROM "noreply@example.com"</code></td>
+              </tr>
+              <tr>
+                <td><code>ReadMail</code></td>
+                <td><code>index</code> (0-based), <code>variableName</code></td>
+                <td><span class="pill pill-single">Single</span> — mail body</td>
+                <td>Reads from results of last SearchMails</td>
+              </tr>
+              <tr>
+                <td><code>GetMailCount</code></td>
+                <td><code>variableName</code></td>
+                <td><span class="pill pill-single">Single</span> — total in folder</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><code>GetLastMessageId</code></td>
+                <td><code>variableName</code></td>
+                <td><span class="pill pill-single">Single</span> — UID</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><code>ListFolders</code></td>
+                <td><code>variableName</code></td>
+                <td><span class="pill pill-list">List</span> — folder names</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><code>DeleteMail</code></td>
+                <td><code>index</code> (0-based)</td>
+                <td><span class="pill pill-none">—</span></td>
+                <td>Deletes from last SearchMails results</td>
+              </tr>
+              <tr>
+                <td><code>MoveToFolder</code></td>
+                <td><code>index</code>, <code>folderName</code></td>
+                <td><span class="pill pill-none">—</span></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><code>Logout</code></td>
+                <td>—</td>
+                <td><span class="pill pill-none">—</span></td>
+                <td>Graceful logout</td>
+              </tr>
+              <tr>
+                <td><code>Disconnect</code></td>
+                <td>—</td>
+                <td><span class="pill pill-none">—</span></td>
+                <td>Closes TCP connection</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>LoliScript Example — Email Verification Check</h3>
+        <div class="code-wrapper">
+          <pre><code>IMAP Connect "imap.gmail.com" "993" (UseSSL=True) 30000
+IMAP Login "&lt;email&gt;" "&lt;pass&gt;"
+IMAP SearchMails "FROM \"verify@service.com\"" "mailCount"
+IMAP ReadMail 0 "mailBody"
+PARSE &lt;mailBody&gt; REGEX "code=([A-Z0-9]{6})" GROUP:1 -> "verifyCode"
+IMAP Logout
+IMAP Disconnect
+KEYCHECK
+  KEYCHAIN Success OR
+    KEY "&lt;verifyCode&gt;" Exists
+  KEYCHAIN Failure OR
+    KEY "&lt;ERROR&gt;" Contains "Authentication"</code></pre>
+        </div>
+
+        <h3>Library</h3>
+        <p>Uses <strong>MailKit 4.17.0</strong> via netstandard2.0 (compatible with .NET 4.8). Older versions (&lt;4.x) have known security vulnerabilities — do not downgrade.</p>
+
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>IMAP block screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <!-- POP3                                                -->
+      <!-- ══════════════════════════════════════════════════ -->
+      <section class="block-section" id="pop3">
+        <div class="block-header">
+          <div class="block-icon block-orange">&#128235;</div>
+          <div class="block-header-text">
+            <h2>POP3 Block</h2>
+            <div class="block-desc">Retrieve email via POP3. Simpler than IMAP — use when the server does not support IMAP.</div>
+          </div>
+        </div>
+
+        <div class="callout callout-info">
+          <span class="callout-icon">&#8505;</span>
+          <p>Like IMAP, POP3 errors write to <span class="var-badge">&lt;ERROR&gt;</span> and do not stop the script.</p>
+        </div>
+
+        <h3>Commands</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Command</th><th>Parameters</th><th>Output</th></tr></thead>
+            <tbody>
+              <tr><td><code>Connect</code></td><td><code>host</code>, <code>port</code>, <code>useSSL</code>, <code>timeout (ms)</code></td><td><span class="pill pill-none">—</span></td></tr>
+              <tr><td><code>Login</code></td><td><code>email</code>, <code>password</code></td><td><span class="pill pill-none">—</span></td></tr>
+              <tr><td><code>GetMessageCount</code></td><td><code>variableName</code></td><td><span class="pill pill-single">Single</span> — count</td></tr>
+              <tr><td><code>GetMessage</code></td><td><code>index</code> (0-based), <code>variableName</code></td><td><span class="pill pill-single">Single</span> — mail body</td></tr>
+              <tr><td><code>Logout</code></td><td>—</td><td><span class="pill pill-none">—</span></td></tr>
+              <tr><td><code>Disconnect</code></td><td>—</td><td><span class="pill pill-none">—</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Default timeout: <strong>30000 ms</strong>.</p>
+
+        <h3>LoliScript Example</h3>
+        <div class="code-wrapper">
+          <pre><code>POP3 Connect "pop.gmail.com" "995" (UseSSL=True) 30000
+POP3 Login "&lt;email&gt;" "&lt;pass&gt;"
+POP3 GetMessageCount "msgCount"
+POP3 GetMessage 0 "latestMail"
+POP3 Logout
+POP3 Disconnect
+KEYCHECK
+  KEYCHAIN Success OR
+    KEY "&lt;msgCount&gt;" GreaterThan "0"
+  KEYCHAIN Failure OR
+    KEY "&lt;ERROR&gt;" Contains "invalid credentials"</code></pre>
+        </div>
+
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>POP3 block screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <!-- SMTP                                                -->
+      <!-- ══════════════════════════════════════════════════ -->
+      <section class="block-section" id="smtp">
+        <div class="block-header">
+          <div class="block-icon block-emerald">&#128140;</div>
+          <div class="block-header-text">
+            <h2>SMTP Block</h2>
+            <div class="block-desc">Send email via SMTP. Useful for testing outbound mail credentials or automated notifications.</div>
+          </div>
+        </div>
+
+        <h3>Commands</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Command</th><th>Parameters</th><th>Output</th></tr></thead>
+            <tbody>
+              <tr><td><code>Connect</code></td><td><code>host</code>, <code>port</code>, <code>useSSL</code>, <code>timeout (ms)</code></td><td><span class="pill pill-none">—</span></td></tr>
+              <tr><td><code>Login</code></td><td><code>email</code>, <code>password</code></td><td><span class="pill pill-none">—</span></td></tr>
+              <tr>
+                <td><code>SendMail</code></td>
+                <td><code>to</code>, <code>subject</code>, <code>body</code>, <code>isHtml</code></td>
+                <td><span class="pill pill-none">—</span></td>
+              </tr>
+              <tr><td><code>Disconnect</code></td><td>—</td><td><span class="pill pill-none">—</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Default timeout: <strong>30000 ms</strong>. Port 587 with STARTTLS is most common for modern SMTP servers.</p>
+
+        <h3>LoliScript Example</h3>
+        <div class="code-wrapper">
+          <pre><code>SMTP Connect "smtp.gmail.com" "587" (UseSSL=True) 30000
+SMTP Login "&lt;email&gt;" "&lt;pass&gt;"
+SMTP SendMail TO:"recipient@example.com" SUBJECT:"Test" BODY:"Hello from OBM2 Pro" ISHTML:False
+SMTP Disconnect
+KEYCHECK
+  KEYCHAIN Success OR
+    KEY "&lt;ERROR&gt;" DoesNotExist
+  KEYCHAIN Failure OR
+    KEY "&lt;ERROR&gt;" Contains "535"</code></pre>
+        </div>
+
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>SMTP block screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <!-- FTP                                                 -->
+      <!-- ══════════════════════════════════════════════════ -->
+      <section class="block-section" id="ftp">
+        <div class="block-header">
+          <div class="block-icon block-violet-light">&#128193;</div>
+          <div class="block-header-text">
+            <h2>FTP Block</h2>
+            <div class="block-desc">Transfer files and list directories via FTP/FTPS. Powered by FluentFTP 54.1.1.</div>
+          </div>
+        </div>
+
+        <h3>Commands</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Command</th><th>Parameters</th><th>Output</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><code>Connect</code></td>
+                <td><code>host</code>, <code>port</code>, <code>user</code>, <code>password</code>, <code>useSSL</code>, <code>timeout (ms)</code></td>
+                <td><span class="pill pill-none">—</span></td>
+              </tr>
+              <tr>
+                <td><code>ListFiles</code></td>
+                <td><code>remotePath</code>, <code>variableName</code></td>
+                <td><span class="pill pill-list">List</span> — file paths</td>
+              </tr>
+              <tr>
+                <td><code>Download</code></td>
+                <td><code>remotePath</code>, <code>localPath</code>, <code>variableName</code></td>
+                <td><span class="pill pill-single">Single</span> — <code>"OK"</code> / <code>"Failed"</code></td>
+              </tr>
+              <tr>
+                <td><code>Upload</code></td>
+                <td><code>localPath</code>, <code>remotePath</code>, <code>variableName</code></td>
+                <td><span class="pill pill-single">Single</span> — <code>"OK"</code> / <code>"Failed"</code></td>
+              </tr>
+              <tr>
+                <td><code>DeleteFile</code></td>
+                <td><code>remotePath</code></td>
+                <td><span class="pill pill-none">—</span></td>
+              </tr>
+              <tr>
+                <td><code>FileExists</code></td>
+                <td><code>remotePath</code>, <code>variableName</code></td>
+                <td><span class="pill pill-single">Single</span> — <code>"True"</code> / <code>"False"</code></td>
+              </tr>
+              <tr>
+                <td><code>Disconnect</code></td>
+                <td>—</td>
+                <td><span class="pill pill-none">—</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Default timeout: <strong>15000 ms</strong> (applied to both connect and read operations).</p>
+
+        <h3>LoliScript Example</h3>
+        <div class="code-wrapper">
+          <pre><code>FTP Connect "ftp.example.com" "21" "&lt;user&gt;" "&lt;pass&gt;" (UseSSL=False) 15000
+FTP ListFiles "/public" "fileList"
+FTP FileExists "/private/secret.txt" "exists"
+FTP Download "/private/data.csv" "C:\Temp\data.csv" "dlResult"
+FTP Disconnect
+KEYCHECK
+  KEYCHAIN Success OR
+    KEY "&lt;dlResult&gt;" EqualTo "OK"
+  KEYCHAIN Failure OR
+    KEY "&lt;ERROR&gt;" Contains "530"</code></pre>
+        </div>
+
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>FTP block screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <!-- BROWSER ACTION                                      -->
+      <!-- ══════════════════════════════════════════════════ -->
+      <section class="block-section" id="browseraction">
+        <div class="block-header">
+          <div class="block-icon block-green">&#129302;</div>
+          <div class="block-header-text">
+            <h2>Browser Action Blocks</h2>
+            <div class="block-desc">Control a Selenium WebDriver instance for browser automation. Requires WebDriver configured in Settings → Selenium.</div>
+          </div>
+        </div>
+
+        <h3>Navigate</h3>
+        <p>Open a URL in the managed browser.</p>
+        <div class="code-wrapper">
+          <pre><code>NAVIGATE "https://example.com/login" TIMEOUT:10000</code></pre>
+        </div>
+
+        <h3>BrowserAction</h3>
+        <p>Perform browser-level actions (not tied to a specific element).</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Action</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><code>SendKeys</code></td><td>Send keyboard input. Special keys: <code>&lt;ENTER&gt;</code>, <code>&lt;TAB&gt;</code>, <code>&lt;BACKSPACE&gt;</code>, <code>&lt;ESC&gt;</code>. Chain with <code>||</code>: <code>&lt;TAB&gt;||Hello||&lt;ENTER&gt;</code></td></tr>
+              <tr><td><code>TakeScreenshot</code></td><td>Capture browser screenshot into a variable</td></tr>
+              <tr><td><code>Refresh</code></td><td>Reload the current page</td></tr>
+              <tr><td><code>Back</code></td><td>Navigate back in history</td></tr>
+              <tr><td><code>Forward</code></td><td>Navigate forward in history</td></tr>
+              <tr><td><code>SwitchToFrame</code></td><td>Switch WebDriver context to an iframe</td></tr>
+              <tr><td><code>SwitchToDefaultContent</code></td><td>Return to the main page context</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>ElementAction</h3>
+        <p>Interact with a specific DOM element found by a locator.</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Locator</th><th>Example value</th></tr></thead>
+            <tbody>
+              <tr><td><code>id</code></td><td><code>username</code></td></tr>
+              <tr><td><code>class</code></td><td><code>btn-login</code></td></tr>
+              <tr><td><code>name</code></td><td><code>email</code></td></tr>
+              <tr><td><code>tag</code></td><td><code>button</code></td></tr>
+              <tr><td><code>selector</code></td><td><code>#login-form input[type=password]</code></td></tr>
+              <tr><td><code>xpath</code></td><td><code>//button[contains(text(),'Sign in')]</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Actions per element: <code>Click</code>, <code>ClearAndType</code>, <code>Type</code>, <code>GetText</code>, <code>GetAttribute</code>, <code>Submit</code>, <code>WaitForElement</code>.</p>
+
+        <h3>ExecuteJS</h3>
+        <p>Run arbitrary JavaScript in the browser context. Variable values are substituted before execution. The return value is captured into the output variable.</p>
+        <div class="code-wrapper">
+          <pre><code>EXECUTEJS "return document.querySelector('#token').value;" -> "csrfToken"</code></pre>
+        </div>
+
+        <h3>Debugger</h3>
+        <p>Step through config execution interactively. Four tabs:</p>
+        <ul>
+          <li><strong>Data</strong> — current BotData variable values</li>
+          <li><strong>Log</strong> — execution log with timestamps</li>
+          <li><strong>HTML View</strong> — rendered source of last HTTP/browser response</li>
+          <li><strong>Notepad</strong> — scratch pad for testing regex / LR patterns</li>
+        </ul>
+
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>Browser Action blocks screenshot — coming soon</span>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════ -->
+      <!-- CAPTCHA                                             -->
+      <!-- ══════════════════════════════════════════════════ -->
+      <section class="block-section" id="captcha">
+        <div class="block-header">
+          <div class="block-icon block-red">&#128737;</div>
+          <div class="block-header-text">
+            <h2>Captcha Block</h2>
+            <div class="block-desc">Solve 9 types of captcha using external solving services.</div>
+          </div>
+        </div>
+
+        <h3>Supported Captcha Types</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Type</th><th>Key Output Variables</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><strong>reCAPTCHA v2</strong></td><td><span class="var-badge">&lt;SOLUTION&gt;</span></td><td>g-recaptcha-response token</td></tr>
+              <tr><td><strong>reCAPTCHA v3</strong></td><td><span class="var-badge">&lt;SOLUTION&gt;</span></td><td>Requires action name and min score</td></tr>
+              <tr><td><strong>hCaptcha</strong></td><td><span class="var-badge">&lt;SOLUTION&gt;</span></td><td>h-captcha-response token</td></tr>
+              <tr><td><strong>FunCaptcha</strong></td><td><span class="var-badge">&lt;SOLUTION&gt;</span></td><td>Arkose Labs token</td></tr>
+              <tr><td><strong>GeeTest</strong></td><td><span class="var-badge">&lt;GT_CHALLENGE&gt;</span> <span class="var-badge">&lt;GT_VALIDATE&gt;</span> <span class="var-badge">&lt;GT_SECCODE&gt;</span></td><td>3 separate output tokens</td></tr>
+              <tr><td><strong>ImageToText</strong></td><td><span class="var-badge">&lt;SOLUTION&gt;</span></td><td>Base64 or URL image input</td></tr>
+              <tr><td><strong>KeyCaptcha</strong></td><td><span class="var-badge">&lt;SOLUTION&gt;</span></td><td></td></tr>
+              <tr><td><strong>Capy</strong></td><td><span class="var-badge">&lt;SOLUTION&gt;</span></td><td></td></tr>
+              <tr><td><strong>BypassCF</strong></td><td>Sets cookies in jar</td><td>Cloudflare UAM bypass</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Automatic Variables (always set after solve)</h3>
+        <p><span class="var-badge">&lt;CAPTCHAID&gt;</span> — service-assigned task ID (for reporting incorrect solves)</p>
+
+        <h3>Supported Solving Services</h3>
+        <p>2Captcha, AntiCaptcha, AZCaptcha, CapMonster, CaptchasIO, DeCaptcher, ImageTyperz, DeathByCaptcha, SolveCaptcha, TrueCaptcha. Configure API keys in <strong>Settings → Captcha</strong>.</p>
+
+        <h3>LoliScript Example</h3>
+        <div class="code-wrapper">
+          <pre><code>CAPTCHA RecaptchaV2 "https://example.com/login" "6Le-XXXXX" -> "recaptchaToken"
+REQUEST POST "https://example.com/login" POSTDATA:"g-recaptcha-response=&lt;recaptchaToken&gt;&amp;user=&lt;user&gt;"</code></pre>
+        </div>
+
+        <div class="screenshot-placeholder">
+          <span class="ph-icon">&#128247;</span>
+          <span>Captcha block screenshot — coming soon</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<footer class="docs-footer">
+  <span>OBM2 Pro &mdash; OpenBullet M2 Pro Documentation</span>
+  <span><a href="https://github.com/ObM2/ObM2Pro">GitHub</a> &middot; <a href="contribute.html">Contribute</a></span>
+</footer>
+
+<button id="back-to-top" title="Back to top">&#8679;</button>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>
