@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -196,10 +196,7 @@ X-Custom-Token: &lt;token&gt;</code></pre>
 REQUEST POST "https://example.com/api/login" CONTENT-TYPE:"application/json" POSTDATA:"{\"user\":\"&lt;user&gt;\",\"pass\":\"&lt;pass&gt;\"}"</code></pre>
         </div>
 
-        <div class="screenshot-placeholder">
-          <span class="ph-icon">&#128247;</span>
-          <span>HTTP Request block screenshot — coming soon</span>
-        </div>
+        <img class="screenshot-real" src="../image/block-request.jpg" alt="HTTP Request block"/>
       </section>
 
       <!-- ══════════════════════════════════════════════════ -->
@@ -256,10 +253,7 @@ REQUEST POST "https://example.com/api/login" CONTENT-TYPE:"application/json" POS
 TLSREQUEST POST "https://target.com/api/login" TLSPROFILE:"Random" CONTENT-TYPE:"application/json" POSTDATA:"{\"email\":\"&lt;email&gt;\",\"password\":\"&lt;pass&gt;\"}"</code></pre>
         </div>
 
-        <div class="screenshot-placeholder">
-          <span class="ph-icon">&#128247;</span>
-          <span>TLS Request block screenshot — coming soon</span>
-        </div>
+        <img class="screenshot-real" src="../image/block-tls-request.jpg" alt="TLS Request block"/>
       </section>
 
       <!-- ══════════════════════════════════════════════════ -->
@@ -369,10 +363,7 @@ KEYCHECK
     KEY "&lt;ERROR&gt;" Contains "Too many connections"</code></pre>
         </div>
 
-        <div class="screenshot-placeholder">
-          <span class="ph-icon">&#128247;</span>
-          <span>Keycheck block screenshot — coming soon</span>
-        </div>
+        <img class="screenshot-real" src="../image/block-keycheck.jpg" alt="Keycheck block"/>
       </section>
 
       <!-- ══════════════════════════════════════════════════ -->
@@ -429,10 +420,7 @@ PARSE &lt;SOURCE&gt; CSS "#user-list li" ATTRIBUTE:"innerText" LIST -> "userList
 PARSE &lt;SOURCE&gt; REGEX "(\d{4}-\d{4}-\d{4})" GROUP:1 -> "cardNumber"</code></pre>
         </div>
 
-        <div class="screenshot-placeholder">
-          <span class="ph-icon">&#128247;</span>
-          <span>Parse block screenshot — coming soon</span>
-        </div>
+        <img class="screenshot-real" src="../image/block-parse.jpg" alt="Parse block"/>
       </section>
 
       <!-- ══════════════════════════════════════════════════ -->
@@ -491,10 +479,7 @@ FUNCTION Replace "&lt;SOURCE&gt;" OLD:"\\n" NEW:" " -> "cleaned"
 FUNCTION Split "&lt;SOURCE&gt;" SEP:"," LIST -> "items"</code></pre>
         </div>
 
-        <div class="screenshot-placeholder">
-          <span class="ph-icon">&#128247;</span>
-          <span>Function block screenshot — coming soon</span>
-        </div>
+        <img class="screenshot-real" src="../image/block-function.jpg" alt="Function block"/>
       </section>
 
       <!-- ══════════════════════════════════════════════════ -->
@@ -645,10 +630,7 @@ KEYCHECK
         <h3>Library</h3>
         <p>Uses <strong>MailKit 4.17.0</strong> via netstandard2.0 (compatible with .NET 4.8). Older versions (&lt;4.x) have known security vulnerabilities — do not downgrade.</p>
 
-        <div class="screenshot-placeholder">
-          <span class="ph-icon">&#128247;</span>
-          <span>IMAP block screenshot — coming soon</span>
-        </div>
+        <img class="screenshot-real" src="../image/block-imap.jpg" alt="IMAP block"/>
       </section>
 
       <!-- ══════════════════════════════════════════════════ -->
@@ -700,10 +682,7 @@ KEYCHECK
     KEY "&lt;ERROR&gt;" Contains "invalid credentials"</code></pre>
         </div>
 
-        <div class="screenshot-placeholder">
-          <span class="ph-icon">&#128247;</span>
-          <span>POP3 block screenshot — coming soon</span>
-        </div>
+        <img class="screenshot-real" src="../image/block-pop3.jpg" alt="POP3 block"/>
       </section>
 
       <!-- ══════════════════════════════════════════════════ -->
@@ -750,10 +729,7 @@ KEYCHECK
     KEY "&lt;ERROR&gt;" Contains "535"</code></pre>
         </div>
 
-        <div class="screenshot-placeholder">
-          <span class="ph-icon">&#128247;</span>
-          <span>SMTP block screenshot — coming soon</span>
-        </div>
+        <img class="screenshot-real" src="../image/block-smtp.jpg" alt="SMTP block"/>
       </section>
 
       <!-- ══════════════════════════════════════════════════ -->
@@ -828,10 +804,7 @@ KEYCHECK
     KEY "&lt;ERROR&gt;" Contains "530"</code></pre>
         </div>
 
-        <div class="screenshot-placeholder">
-          <span class="ph-icon">&#128247;</span>
-          <span>FTP block screenshot — coming soon</span>
-        </div>
+        <img class="screenshot-real" src="../image/block-ftp.jpg" alt="FTP block"/>
       </section>
 
       <!-- ══════════════════════════════════════════════════ -->
@@ -901,10 +874,7 @@ KEYCHECK
           <li><strong>Notepad</strong> — scratch pad for testing regex / LR patterns</li>
         </ul>
 
-        <div class="screenshot-placeholder">
-          <span class="ph-icon">&#128247;</span>
-          <span>Browser Action blocks screenshot — coming soon</span>
-        </div>
+        <img class="screenshot-real" src="../image/block-browseraction.jpg" alt="Browser Action block"/>
       </section>
 
       <!-- ══════════════════════════════════════════════════ -->
@@ -949,10 +919,7 @@ KEYCHECK
 REQUEST POST "https://example.com/login" POSTDATA:"g-recaptcha-response=&lt;recaptchaToken&gt;&amp;user=&lt;user&gt;"</code></pre>
         </div>
 
-        <div class="screenshot-placeholder">
-          <span class="ph-icon">&#128247;</span>
-          <span>Captcha block screenshot — coming soon</span>
-        </div>
+        <img class="screenshot-real" src="../image/block-captcha.jpg" alt="Captcha block"/>
       </section>
 
     </div>
@@ -960,7 +927,7 @@ REQUEST POST "https://example.com/login" POSTDATA:"g-recaptcha-response=&lt;reca
 </div>
 
 <footer class="docs-footer">
-  <span>OBM2 Pro &mdash; OpenBullet M2 Pro Documentation</span>
+  <span>OBM2 Pro &mdash; OB M2 BrowninG Documentation</span>
   <span><a href="https://github.com/ObM2/ObM2Pro">GitHub</a> &middot; <a href="contribute.html">Contribute</a></span>
 </footer>
 
