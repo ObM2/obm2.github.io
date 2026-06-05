@@ -86,6 +86,24 @@
       <!-- Getting Started -->
       <section class="block-section" id="getting-started">
         <h2>Getting Started</h2>
+
+        <h3>Requirements</h3>
+        <p>OBM2 Pro is a portable <strong>.NET 8</strong> application: unzip the release folder anywhere and run it — there is no installer. Before the first launch, make sure these runtime components are installed:</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Component</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Windows 10 / 11 (64-bit)</td><td>Required.</td></tr>
+              <tr><td><a href="https://dotnet.microsoft.com/download/dotnet/8.0/runtime" target="_blank" rel="noopener">.NET 8 Desktop Runtime (x64)</a></td><td><strong>Mandatory</strong> — the app will not start without it. Pick the <em>Desktop Runtime</em>, not the SDK or the console runtime.</td></tr>
+              <tr><td>Visual C++ Redistributable 2015–2022 — <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe" target="_blank" rel="noopener">x64</a> + <a href="https://aka.ms/vs/17/release/vc_redist.x86.exe" target="_blank" rel="noopener">x86</a></td><td>Needed by native dependencies (OCR/Tesseract, image processing). The app checks for it on startup and warns if missing.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Automatic updates</h3>
+        <p>From version <strong>4.0.0</strong> onward, OBM2 Pro updates itself. When a newer release is published, the built-in Updater downloads the new package, verifies its integrity (SHA-256), replaces the program files and restarts the app automatically. Your data — configs, wordlists, proxies, settings and hits — is preserved across updates. Releases <strong>3.1.x</strong> do not include the updater and must be upgraded to 4.0.0 manually once.</p>
+
+        <h3>Main Menu</h3>
         <p>Launch <code>OB M2 BrowninG.exe</code>. The main menu appears with the following sections accessible from the left navigation rail:</p>
         <div class="docs-table-wrap">
           <table class="docs-table">

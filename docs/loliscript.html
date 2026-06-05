@@ -69,7 +69,7 @@
       <!-- Overview -->
       <section class="block-section" id="overview">
         <h2>Overview</h2>
-        <p>LoliScript is a simple imperative language where <strong>each line is one instruction</strong>. There are no functions, no classes — only block invocations, control flow, and variable assignment. It is case-insensitive for keywords.</p>
+        <p>LoliScript is a simple imperative language where <strong>each line is one instruction</strong>. Beyond block invocations, control flow and variable assignment, it can also embed inline scripts (JavaScript or IronPython) for custom logic — see <a href="#inline-scripting">Inline Scripting</a>. It is case-insensitive for keywords.</p>
         <div class="callout callout-info">
           <span class="callout-icon">&#8505;</span>
           <p>The Stacker (visual editor) and the LoliScript editor stay fully in sync. Editing one updates the other in real time.</p>
@@ -174,6 +174,23 @@ SET "authHeader" "Bearer &lt;token&gt;"</code></pre>
         <div class="code-wrapper">
           <pre><code>LOG "User: &lt;email&gt; — Status: &lt;RESPONSECODE&gt;"
 LOG "Capture: &lt;planType&gt;"</code></pre>
+        </div>
+      </section>
+
+      <!-- Inline Scripting -->
+      <section class="block-section" id="inline-scripting">
+        <h2>Inline Scripting (JavaScript / IronPython)</h2>
+        <p>When the standard blocks aren't enough, LoliScript can embed an inline script between <code>BEGIN SCRIPT</code> and <code>END SCRIPT</code>. The current LoliScript variables are injected into the script's scope; the variables listed after <code>OUTPUTS</code> are read back and stored as BotData variables, usable by the blocks that follow.</p>
+        <div class="code-wrapper">
+          <pre><code>BEGIN SCRIPT IronPython
+# &lt;USERNAME&gt; and &lt;PASSWORD&gt; are injected as variables
+result = USERNAME.upper() + "::" + PASSWORD
+END SCRIPT -&gt; VARS OUTPUTS "result"</code></pre>
+        </div>
+        <p>The language token right after <code>BEGIN SCRIPT</code> selects the engine: <code>IronPython</code> (embedded Python, no system install required) or <code>JavaScript</code>. Use <code>OUTPUTS "a,b,c"</code> to export several variables at once.</p>
+        <div class="callout callout-info">
+          <span class="callout-icon">&#8505;</span>
+          <p>IronPython scripting was reintroduced on .NET 8 — embedded, with no external interpreter required. It is distinct from the <code>PYRUN</code> utility, which shells out to a separately installed Python.</p>
         </div>
       </section>
 
