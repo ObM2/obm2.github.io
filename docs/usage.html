@@ -103,6 +103,22 @@
         <h3>Automatic updates</h3>
         <p>From version <strong>4.0.0</strong> onward, OBM2 Pro updates itself. When a newer release is published, the built-in Updater downloads the new package, verifies its integrity (SHA-256), replaces the program files and restarts the app automatically. Your data — configs, wordlists, proxies, settings and hits — is preserved across updates. Releases <strong>3.1.x</strong> do not include the updater and must be upgraded to 4.0.0 manually once.</p>
 
+        <h3>Old configs after updating</h3>
+        <p>Existing configs <strong>still load</strong> in v4 (the format is backward compatible), <strong>but some may need a quick review before use</strong>. Several blocks gained new fields in v4, so a value saved for an old field can land in a different field than intended and change the block's behavior.</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Block</th><th>What can happen</th></tr></thead>
+            <tbody>
+              <tr><td>Function &rarr; <strong>RandomString</strong></td><td>The old input can be routed into the new <em>Custom Charset</em> field, so the random string is generated from the wrong character set.</td></tr>
+              <tr><td>Utility &rarr; <strong>Convert</strong> (and other reworked blocks)</td><td>New options can shift how the old parameters are interpreted.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout callout-warning">
+          <span class="callout-icon">&#9888;</span>
+          <p>After updating, <strong>open, review and re-save</strong> any config that uses the changed blocks (RandomString, Utility Convert, etc.). Re-saving rewrites the config with the correct v4 field mapping. Configs that don't use the modified blocks are unaffected.</p>
+        </div>
+
         <h3>Main Menu</h3>
         <p>Launch <code>OB M2 BrowninG.exe</code>. The main menu appears with the following sections accessible from the left navigation rail:</p>
         <div class="docs-table-wrap">
