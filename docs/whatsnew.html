@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OBM2 Pro — What's New</title>
+  <meta name="description" content="What's new in OB M2 BrowninG — highlights from v4.0.1 through v4.0.4."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap"/>
+  <link rel="stylesheet" href="../assets/css/docs.css"/>
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────────────────── -->
+<header class="site-header">
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button>
+  <a class="logo" href="index.html">
+    <img src="../M2Logo.png" alt="OBM2 Pro"/>
+    OBM2 Pro
+    <span class="version-badge">v4.0.4</span>
+  </a>
+  <nav class="header-nav">
+    <a href="index.html">Home</a>
+    <a href="whatsnew.html" class="active">What's New</a>
+    <a href="usage.html">Usage</a>
+    <a href="stacker.html">Stacker</a>
+    <a href="variables.html">Variables</a>
+    <a href="loliscript.html">LoliScript</a>
+    <a href="remote.html">Config Sources</a>
+    <a href="examples.html">Examples</a>
+  </nav>
+  <div class="header-spacer"></div>
+  <div class="header-search">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" id="search-input" placeholder="Search docs…" autocomplete="off"/>
+    <div class="search-results" id="search-results"></div>
+  </div>
+  <a href="https://github.com/ObM2/ObM2Pro" style="color:var(--text-muted);font-size:.85rem;margin-left:.5rem;">GitHub</a>
+</header>
+
+<!-- ── Layout ─────────────────────────────────────────────── -->
+<div class="docs-layout">
+
+  <!-- Sidebar -->
+  <aside class="docs-sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Getting Started</div>
+      <a class="sidebar-link" href="index.html">Introduction</a>
+      <a class="sidebar-link active" href="whatsnew.html">What's New</a>
+      <a class="sidebar-link" href="usage.html">Usage Guide</a>
+      <a class="sidebar-link" href="examples.html">Examples</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Scripting</div>
+      <a class="sidebar-link" href="stacker.html">Stacker &amp; Blocks</a>
+      <a class="sidebar-link" href="variables.html">Variables &amp; BotData</a>
+      <a class="sidebar-link" href="loliscript.html">LoliScript Reference</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Advanced</div>
+      <a class="sidebar-link" href="remote.html">Config Sources</a>
+      <a class="sidebar-link" href="contribute.html">Contribute</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Links</div>
+      <a class="sidebar-link" href="https://github.com/ObM2/ObM2Pro">GitHub Repository</a>
+    </div>
+  </aside>
+
+  <!-- Content -->
+  <main class="docs-content">
+    <div class="docs-content-inner">
+
+      <div class="hero">
+        <h1>What's New</h1>
+        <p class="subtitle">
+          A lot has shipped since v4.0.0. Below are the most impactful additions and improvements
+          across <strong>v4.0.1 &rarr; v4.0.4</strong> — new engines, blocks, and a large runner
+          performance overhaul. This is a curated summary, not the full changelog.
+        </p>
+      </div>
+
+      <h2>Highlights</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="fc-icon">&#128230;</div>
+          <div class="fc-title">OpenBullet 2 (.opk) support</div>
+          <div class="fc-desc">Import, run, and create OpenBullet 2 configs directly, powered by an
+            embedded OB2 engine (LoliCode/C# via Roslyn). No manual porting to M2 blocks.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#9889;</div>
+          <div class="fc-title">Runner performance overhaul</div>
+          <div class="fc-desc">CPM brought in line with OB2 Native: HTTP connection reuse, a 60s
+            proxy cooldown, O(1) proxy rotation, and a non-blocking output&rarr;UI path.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#127760;</div>
+          <div class="fc-title">New HTTP engine</div>
+          <div class="fc-desc">Request blocks migrated from the legacy Extreme.Net engine to the
+            modern RuriLib.Http stack for correctness and speed.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#128220;</div>
+          <div class="fc-title">Script block (Node.js / Python)</div>
+          <div class="fc-desc">The RUNSCRIPT block now executes real Node.js and Python, not just
+            embedded interpreters.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#129302;</div>
+          <div class="fc-title">Selenium upgrades</div>
+          <div class="fc-desc">New element/browser actions (OB2 parity), a visual MOUSEACTION block,
+            UndetectedChromeDriver, Firefox <code>.xpi</code> extensions, and CDP stealth.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#128274;</div>
+          <div class="fc-title">More captchas</div>
+          <div class="fc-desc">New Cap Solve block for Cap.js PoW captchas, plus Cloudflare Turnstile,
+            DataDome, and GeeTest v4 captcha types.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#128450;</div>
+          <div class="fc-title">Proxy Groups</div>
+          <div class="fc-desc">Organize proxies into groups with a per-Runner active group and
+            explicit Add/Edit/Delete management in the Proxy Manager.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#128202;</div>
+          <div class="fc-title">Home dashboard</div>
+          <div class="fc-desc">Redesigned home with a memory card and a live system resource monitor.</div>
+        </div>
+      </div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">&#8505;</span>
+        <p>Looking for every fix and internal change? The complete, version-by-version changelog
+        lives in the <a href="https://github.com/ObM2/ObM2Pro">project repository</a>.</p>
+      </div>
+
+      <!-- ── Per-version ─────────────────────────────────────── -->
+      <h2>v4.0.4</h2>
+      <ul>
+        <li><strong>OpenBullet 2 (.opk) configs</strong> — import and run OB2 configs, create new
+          OPK configs from scratch (LoliCode or C#), with an OPK badge and kind filter in the
+          Config Manager.</li>
+        <li><strong>Runner performance</strong> — fixed cyclic "accordion" stalls with a 60s proxy
+          cooldown, HTTP connection reuse, and a 15s per-request timeout; proxy rotation rewritten to
+          O(1)-amortized; log output decoupled from the UI thread.</li>
+        <li><strong>Session persistence</strong> — RunnerManager job order, cumulative counters, and
+          work progress now survive an app restart instead of resetting.</li>
+        <li><strong>Selenium</strong> — load Firefox <code>.xpi</code> extensions (works headless),
+          with a real "Check WebDriver" diagnostic.</li>
+        <li><strong>HitsDB search</strong> — now matches Date, Proxy, and Wordlist, not only captured
+          data.</li>
+        <li><strong>Function block</strong> — GZip compress/decompress, a GenerateGUID DEVICEID mode,
+          and a <code>?c</code> Custom Charset token for RandomString.</li>
+        <li><strong>Stability</strong> — consistent styled dialogs, more reliable Growl popups, and a
+          LiteDB startup-crash fix for saved cookies.</li>
+      </ul>
+
+      <h2>v4.0.3</h2>
+      <ul>
+        <li><strong>Script block (RUNSCRIPT)</strong> — real Node.js and Python execution.</li>
+        <li><strong>Selenium overhaul</strong> — new element and browser actions (OB2 parity), a
+          visual MOUSEACTION block, per-action dynamic fields, UndetectedChromeDriver as a global
+          option, a CDP stealth baseline, and an authenticated-proxy fix.</li>
+        <li><strong>Proxy Groups</strong> — a per-Runner active proxy group.</li>
+        <li><strong>Runner</strong> — fixed cyclic slowdown during multi-bot runs.</li>
+      </ul>
+
+      <h2>v4.0.2</h2>
+      <ul>
+        <li><strong>HTTP engine migration</strong> — Extreme.Net &rarr; RuriLib.Http.</li>
+        <li><strong>Captchas</strong> — new Cap Solve block (Cap.js PoW) plus Cloudflare Turnstile,
+          DataDome, and GeeTest v4 types.</li>
+        <li><strong>Home dashboard</strong> — memory card and resource monitor.</li>
+        <li><strong>Stacker UX</strong> — fixed-height Custom Headers/Cookies (OB2 style) and broader
+          OB2 block/function parity.</li>
+        <li><strong>Function</strong> — GenerateGUID version/format options; CurrentUnixTime unit as a
+          combo box.</li>
+        <li><strong>Runner &amp; misc</strong> — settings persistence fix, ULP&rarr;Combo conversion
+          fix, and a localized license dialog with no hostname leak.</li>
+      </ul>
+
+      <h2>v4.0.1</h2>
+      <ul>
+        <li><strong>Proxy checker</strong> — rewritten so authenticated/paid proxies check reliably,
+          with full country info.</li>
+        <li><strong>TLS / networking</strong> — HTTP/1.1 header-order control (fingerprint fix),
+          non-ASCII header handling, and an IV-prefixed AES envelope mode.</li>
+        <li><strong>Site Security Scanner</strong> — multi-signature bot/WAF detection with an
+          optional deep scan.</li>
+        <li><strong>One-click updater</strong> — in-app update flow.</li>
+      </ul>
+
+    </div><!-- /docs-content-inner -->
+  </main>
+</div><!-- /docs-layout -->
+
+<footer class="docs-footer">
+  <span>OBM2 Pro &mdash; OB M2 BrowninG Documentation</span>
+  <span><a href="https://github.com/ObM2/ObM2Pro">GitHub</a> &middot; <a href="contribute.html">Contribute</a></span>
+</footer>
+
+<button id="back-to-top" title="Back to top">&#8679;</button>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>
