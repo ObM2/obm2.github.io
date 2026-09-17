@@ -103,9 +103,9 @@
         </div>
         <div class="feature-card">
           <div class="fc-icon">&#128220;</div>
-          <div class="fc-title">Script block (Node.js / Python)</div>
-          <div class="fc-desc">The RUNSCRIPT block now executes real Node.js and Python, not just
-            embedded interpreters.</div>
+          <div class="fc-title">Script block (4 interpreters)</div>
+          <div class="fc-desc">The RUNSCRIPT block now offers Jint and IronPython (embedded, no
+            install needed) alongside real Node.js and Python.</div>
         </div>
         <div class="feature-card">
           <div class="fc-icon">&#129302;</div>
@@ -166,6 +166,10 @@
           mode, byte-for-byte compatible with <code>openssl enc -aes-256-cbc -md md5</code>.</li>
         <li><strong>Keycheck</strong> — "If no key found" is now a three-way choice (Nothing / Ban /
           Fail) instead of a single ban checkbox.</li>
+        <li><strong>Script block</strong> — new OB2-style output editor and two more embedded
+          interpreters, <strong>Jint</strong> (JavaScript) and <strong>IronPython</strong>, alongside
+          the existing external Node.js/Python execution — four interpreters total, no install
+          required for Jint/IronPython.</li>
         <li><strong>Wordlist Tools</strong> — new recursive Country TLD Extractor that scans a folder
           and all its subfolders in one pass.</li>
       </ul>
