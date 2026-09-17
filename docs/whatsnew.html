@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>OBM2 Pro — What's New</title>
-  <meta name="description" content="What's new in OB M2 BrowninG — highlights from v4.0.1 through v4.0.4."/>
+  <meta name="description" content="What's new in OB M2 BrowninG — highlights from v4.0.1 through v4.1.0."/>
   <link rel="icon" href="../favicon.ico"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap"/>
@@ -18,7 +18,7 @@
   <a class="logo" href="index.html">
     <img src="../M2Logo.png" alt="OBM2 Pro"/>
     OBM2 Pro
-    <span class="version-badge">v4.0.4</span>
+    <span class="version-badge">v4.1.0</span>
   </a>
   <nav class="header-nav">
     <a href="index.html">Home</a>
@@ -76,7 +76,7 @@
         <h1>What's New</h1>
         <p class="subtitle">
           A lot has shipped since v4.0.0. Below are the most impactful additions and improvements
-          across <strong>v4.0.1 &rarr; v4.0.4</strong> — new engines, blocks, and a large runner
+          across <strong>v4.0.1 &rarr; v4.1.0</strong> — new engines, blocks, and a large runner
           performance overhaul. This is a curated summary, not the full changelog.
         </p>
       </div>
@@ -130,6 +130,12 @@
           <div class="fc-title">Home dashboard</div>
           <div class="fc-desc">Redesigned home with a memory card and a live system resource monitor.</div>
         </div>
+        <div class="feature-card">
+          <div class="fc-icon">&#128268;</div>
+          <div class="fc-title">OB2 Plugin Converter</div>
+          <div class="fc-desc">Turn an OpenBullet 2 plugin (.dll) into a native M2 Stacker block, no
+            coding required. <a href="#ob2-plugin-converter">Learn more</a>.</div>
+        </div>
       </div>
 
       <div class="callout callout-info">
@@ -139,6 +145,66 @@
       </div>
 
       <!-- ── Per-version ─────────────────────────────────────── -->
+      <h2>v4.1.0</h2>
+      <ul>
+        <li><strong>Full migration to .NET 10</strong> — every project (app, RuriLib, embedded OB2
+          engine, plugins) retargeted from .NET 8 to .NET 10, unlocking the modern HTTP stack and
+          features that were previously stubbed out.</li>
+        <li><strong>HTTP engine upgraded to RuriLib.Http 2.0.1</strong> — same engine as OB2 Native,
+          with Brotli/zstd decompression and a fixed certificate-validation crash on native and
+          embedded OB2 requests.</li>
+        <li><strong>Native curl-impersonate, browser automation and CPython, all in-process</strong> —
+          the OB2 engine's curl-impersonate, Selenium/Playwright/Puppeteer and Python blocks no longer
+          need the external TLS proxy or a separate interpreter; Chrome/Firefox/Edge/PuppeteerSharp and
+          CPython download automatically on first use.</li>
+        <li><strong>OB2 Plugin Converter</strong> — turn an OpenBullet 2 plugin (.dll) into a native M2
+          block directly from the Tools menu, no coding or .NET SDK required. See
+          <a href="#ob2-plugin-converter">below</a> for the full walkthrough.</li>
+        <li><strong>Home dashboard restyle</strong> — new poster-style header, a CPU progress bar, six
+          individual "Your collection" cards, and a success-only recent-hits chart.</li>
+        <li><strong>AESEncrypt / AESDecrypt</strong> — new OpenSSL-compatible "Salted__" passphrase
+          mode, byte-for-byte compatible with <code>openssl enc -aes-256-cbc -md md5</code>.</li>
+        <li><strong>Keycheck</strong> — "If no key found" is now a three-way choice (Nothing / Ban /
+          Fail) instead of a single ban checkbox.</li>
+        <li><strong>Wordlist Tools</strong> — new recursive Country TLD Extractor that scans a folder
+          and all its subfolders in one pass.</li>
+      </ul>
+
+      <div class="callout callout-info" id="ob2-plugin-converter">
+        <span class="callout-icon">&#128268;</span>
+        <div>
+          <p><strong>OB2 Plugin Converter — what it does, and why you'd use it.</strong></p>
+          <p>Many working configs rely on an <strong>OpenBullet 2 plugin</strong> (a <code>.dll</code>)
+          for logic that OB2's own blocks can't cover — a custom captcha solver, a proprietary crypto
+          routine, a vendor-specific SDK call. M2 runs OB2 configs through its embedded OB2 engine, but
+          a plugin written for OB2 is still <em>OB2-only code</em>: on its own it has no UI, no palette
+          icon, and no place in the M2 Stacker, so a config that needs it can look "broken" in M2 even
+          though nothing is actually wrong with the plugin.</p>
+          <p>The <strong>Tools &rarr; OB2 Plugin Converter</strong> closes that gap. Point it at the
+          plugin's <code>.dll</code> and it generates a matching <strong>native M2 block</strong> — with
+          its own Stacker entry (category <em>Plugins</em>), a proper parameter UI (text fields,
+          checkboxes, dropdowns matching the plugin's inputs), and full LoliScript save/load — while the
+          plugin's actual logic keeps running unchanged, unmodified, inside the embedded OB2 engine. No
+          C# knowledge, no Visual Studio, and no .NET SDK install are needed: the wrapper compiles
+          in-process via Roslyn.</p>
+          <p><strong>What you get:</strong> two files, deployed side by side — the original OB2 plugin
+          in <code>Plugins/OB2/</code> (the logic) and the generated <code>*.M2.dll</code> in
+          <code>Plugins/</code> (the M2 block that calls it). Restart M2 once after conversion and the
+          new block shows up in the Stacker like any other native block, ready to drag into a config.</p>
+          <p><strong>Why convert instead of just running the OB2 config as-is:</strong> a converted
+          plugin block can be reused inside <em>native M2 configs</em> too, not only OB2 imports — you
+          can mix it with M2's own Request/Parse/Keycheck blocks, proxy groups, and runner tooling
+          instead of staying locked into a full OB2 script. It also turns a cryptic "plugin not found /
+          config won't load" support question into a two-minute self-service fix, since the converter
+          reports exactly which plugin is missing and produces a ready-to-use block for it.</p>
+          <p><strong>Current limits (first cut):</strong> best suited to self-contained blocks
+          (generators, hashing, transforms, standalone HTTP calls). Parameters are passed by value with
+          a single output; state shared through cookies, a reused HttpClient, or custom objects across
+          multiple OB2 blocks is not bridged yet, and proxy headers/cookies aren't forwarded. For those
+          cases, keep running the config as a native OB2 import rather than converting the plugin.</p>
+        </div>
+      </div>
+
       <h2>v4.0.4</h2>
       <ul>
         <li><strong>OpenBullet 2 (.opk) configs</strong> — import and run OB2 configs, create new
