@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OB2 Plugin Converter — OBM2 Pro</title>
+  <meta name="description" content="Convert an OpenBullet 2 plugin (.dll) into a native M2 block, entirely inside the app — no .NET SDK required."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap"/>
+  <link rel="stylesheet" href="../assets/css/docs.css"/>
+  <style>
+    /* Screenshot immagini della guida: bordo/arrotondamento coerenti col tema, responsive */
+    .doc-shot{display:block;max-width:100%;height:auto;margin:.75rem 0 1.25rem;border:1px solid #2A2A35;border-radius:10px;}
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button>
+  <a class="logo" href="index.html">
+    <img src="../M2Logo.png" alt="OBM2 Pro"/>
+    OBM2 Pro
+    <span class="version-badge">v4.1.0</span>
+  </a>
+  <nav class="header-nav">
+    <a href="index.html">Home</a>
+    <a href="whatsnew.html">What's New</a>
+    <a href="usage.html">Usage</a>
+    <a href="stacker.html">Stacker</a>
+    <a href="variables.html">Variables</a>
+    <a href="loliscript.html">LoliScript</a>
+    <a href="remote.html">Config Sources</a>
+    <a href="examples.html">Examples</a>
+    <a href="ob2-plugin-converter.html" class="active">Plugin Converter</a>
+  </nav>
+  <div class="header-spacer"></div>
+  <div class="header-search">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" id="search-input" placeholder="Search docs…" autocomplete="off"/>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</header>
+
+<div class="docs-layout">
+
+  <aside class="docs-sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">On this page</div>
+      <a class="sidebar-link" href="#overview" data-target="overview">Overview</a>
+      <a class="sidebar-link" href="#requirements" data-target="requirements">What you need</a>
+      <a class="sidebar-link" href="#steps" data-target="steps">Steps</a>
+      <a class="sidebar-link" href="#video" data-target="video">Video walkthrough</a>
+      <a class="sidebar-link" href="#notes" data-target="notes">Notes &amp; limits</a>
+      <a class="sidebar-link" href="#troubleshooting" data-target="troubleshooting">Troubleshooting</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Navigation</div>
+      <a class="sidebar-link" href="index.html">&#8592; Home</a>
+      <a class="sidebar-link" href="usage.html">Usage Guide</a>
+    </div>
+  </aside>
+
+  <main class="docs-content">
+    <div class="docs-content-inner">
+
+      <div class="breadcrumb">
+        <a href="index.html">Docs</a>
+        <span class="sep">/</span>
+        <span>OB2 Plugin Converter</span>
+      </div>
+
+      <h1>Converting an OpenBullet 2 plugin into an M2 block</h1>
+      <p class="page-subtitle">Turn an OpenBullet 2 plugin (.dll) into a native M2 block, entirely inside the app — no .NET SDK, no command line, no manual paths.</p>
+
+      <section class="block-section" id="overview">
+        <h2>Overview</h2>
+        <p>M2 Pro can turn an <strong>OpenBullet 2 plugin</strong> (<code>.dll</code>) into a
+        <strong>native M2 block</strong> that shows up in the Stacker and configures like any built-in
+        block. The conversion runs <strong>inside the app</strong> and the wrapper is compiled
+        in-process, so the <strong>.NET SDK is not required</strong>. This guide uses the sample
+        <strong>RandGenerator</strong> plugin (a simple Random GUID / UUID / DeviceID generator).</p>
+      </section>
+
+      <section class="block-section" id="requirements">
+        <h2>What you need</h2>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Requirement</th><th>Detail</th></tr></thead>
+            <tbody>
+              <tr><td>M2 Pro</td><td>Version <strong>4.1.0 or newer</strong></td></tr>
+              <tr><td>Plugin file</td><td>The OB2 plugin <code>.dll</code> to convert (here: <code>RandGenerator.dll</code>)</td></tr>
+              <tr><td>.NET SDK</td><td>Not required — the standard .NET Desktop Runtime M2 already needs is enough</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="block-section" id="steps">
+        <h2>Steps</h2>
+
+        <h3>1. Open the converter</h3>
+        <p>In M2, go to <strong>Tools &rarr; OB2 Plugin Converter</strong>.</p>
+        <img class="doc-shot" src="images/01-tools-menu.png" alt="Tools menu with OB2 Plugin Converter open"/>
+
+        <h3>2. Select the plugin</h3>
+        <p>Click <strong>Select OB2 plugin (.dll)</strong> and pick your plugin file &mdash; <code>RandGenerator.dll</code>.</p>
+        <img class="doc-shot" src="images/02-select-dll.png" alt="File picker with RandGenerator.dll selected"/>
+
+        <h3>3. Convert</h3>
+        <p>Click <strong>Convert</strong>. The log shows the wrapper being generated and compiled in-process:</p>
+        <pre><code>Generated wrapper for block 'Generate' (2 params, output String)
+Compiling wrapper (Roslyn, in-process)...
+Compiled: …\Plugins\RandGenerator.M2.dll
+Copied OB2 dll: …\Plugins\OB2\RandGenerator.dll</code></pre>
+        <p>When it finishes you get <strong>&ldquo;Conversion complete. Restart M2 to see the block in the Stacker (Plugins category).&rdquo;</strong></p>
+        <img class="doc-shot" src="images/03-convert-log.png" alt="Convert log and success dialog"/>
+
+        <h3>4. Check the produced files (optional)</h3>
+        <p>Click <strong>Open Plugins folder</strong>. You should see:</p>
+        <ul>
+          <li><code>Plugins\RandGenerator.M2.dll</code> &mdash; the native M2 block (UI + serialization).</li>
+          <li><code>Plugins\OB2\RandGenerator.dll</code> &mdash; the original OB2 plugin (holds the logic).</li>
+        </ul>
+        <p>Both are needed: the block delegates execution to the original plugin at runtime.</p>
+        <img class="doc-shot" src="images/04-plugins-folder.png" alt="Produced files in the Plugins folder"/>
+
+        <h3>5. Restart M2</h3>
+        <p>Close and reopen M2 so the new block is loaded.</p>
+
+        <h3>6. Use the block</h3>
+        <p>Open a config in the <strong>Stacker</strong>, click <strong>Add Block</strong>, and open the
+        <strong>Plugins</strong> category. Your converted block is there (here shown as
+        <strong>OB2_Generate</strong>). Add it, set its parameters, and <strong>Run</strong>.</p>
+        <img class="doc-shot" src="images/05-add-block-plugins.png" alt="Add Block dialog, Plugins category"/>
+        <p>The block configures like any native one &mdash; in this example a <code>type</code> dropdown
+        (DEVICEID / UUID / GUID), a <code>KeepDashes</code> option, a <code>Variable Name</code>, and
+        <code>Is Capture</code>. Running it produces the generated value:</p>
+        <img class="doc-shot" src="images/06-run-output.png" alt="Block configured and run output"/>
+      </section>
+
+      <section class="block-section" id="video">
+        <h2>Video walkthrough</h2>
+        <p>Watch the full conversion on the Telegram channel:
+        <a href="https://t.me/OBM2pro/669" target="_blank" rel="noopener">t.me/OBM2pro/669</a>.</p>
+        <p>The video shows, end to end: opening the converter, selecting <code>RandGenerator.dll</code>,
+        converting (log compiling in-process, no SDK), the &ldquo;restart M2&rdquo; dialog, the two produced
+        files, restarting M2, and adding + running the block from the Stacker Plugins category.</p>
+      </section>
+
+      <section class="block-section" id="notes">
+        <h2>Notes &amp; limits</h2>
+        <div class="callout callout-info">
+          <span class="callout-icon">&#8505;</span>
+          <p><strong>Restart required.</strong> A converted block appears only after restarting M2
+          (there is no hot-reload in this version).</p>
+        </div>
+        <ul>
+          <li><strong>Re-converting in the same session.</strong> If you rebuild the <em>same</em> plugin
+          <code>.dll</code> and convert it again without restarting, M2 may still report the previously
+          loaded block. Restart M2 to pick up the new version.</li>
+          <li><strong>Self-contained blocks work best.</strong> Parameters go in by value and a single
+          output comes back. Blocks that share state across the pipeline (cookies, a reused HTTP client,
+          custom objects) are not bridged &mdash; the converter suits standalone blocks (generators,
+          hashing, transforms, simple HTTP).</li>
+          <li><strong>Keep it in the app.</strong> A separate command-line converter exists for
+          developers, but end users should always use this Tools page &mdash; path handling and
+          compilation are automatic.</li>
+        </ul>
+      </section>
+
+      <section class="block-section" id="troubleshooting">
+        <h2>Troubleshooting</h2>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th>Message</th><th>Cause / fix</th></tr></thead>
+            <tbody>
+              <tr><td><code>No [Block] found …</code></td><td>The selected DLL has no OB2 block methods, or it isn't an OB2 plugin. Pick the correct <code>.dll</code>.</td></tr>
+              <tr><td><code>Wrapper compilation failed …</code></td><td>The log shows the compiler error. Make sure you're on M2 <strong>4.1.0+</strong>; older builds don't support in-process conversion.</td></tr>
+              <tr><td><code>File in use …</code></td><td>A previously converted <code>*.M2.dll</code> is loaded by a running M2. Close M2 (or the running job) and convert again.</td></tr>
+              <tr><td>Block missing after restart</td><td>Confirm both files exist (<code>Plugins\&lt;name&gt;.M2.dll</code> and <code>Plugins\OB2\&lt;name&gt;.dll</code>) and that you fully restarted the app.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<footer class="docs-footer">
+  <span>OBM2 Pro &mdash; OB M2 BrowninG Documentation</span>
+  <span><a href="https://github.com/ObM2/ObM2Pro">GitHub</a> &middot; <a href="contribute.html">Contribute</a></span>
+</footer>
+
+<button id="back-to-top" title="Back to top">&#8679;</button>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>
