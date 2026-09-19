@@ -128,7 +128,6 @@
       { id: null, href: 'loliscript.html',  title: 'LoliScript Reference', section: 'Documentation' },
       { id: null, href: 'remote.html',      title: 'Remote API',        section: 'Documentation' },
       { id: null, href: 'examples.html',    title: 'Examples',          section: 'Documentation' },
-      { id: null, href: 'contribute.html',  title: 'Contribute',        section: 'Documentation' },
       { id: null, href: 'ob2-plugin-converter.html', title: 'OB2 Plugin Converter', section: 'Documentation' },
       /* Stacker blocks */
       { id: 'request',      href: 'stacker.html#request',      title: 'HTTP Request Block',   section: 'Stacker' },
