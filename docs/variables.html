@@ -129,6 +129,16 @@
                 <td>Any block that throws an exception</td>
                 <td>See below.</td>
               </tr>
+              <tr>
+                <td><span class="var-badge">&lt;PROXY&gt;</span></td>
+                <td>Runner / Debugger (when Use Proxies is on)</td>
+                <td>The current proxy as <code>host:port</code> only (no credentials). Cosmetic — the real proxy authentication travels inside the proxy object, not this string.</td>
+              </tr>
+              <tr>
+                <td><span class="var-badge">&lt;PROXYFULL&gt;</span></td>
+                <td>Runner / Debugger (when Use Proxies is on)</td>
+                <td>The complete proxy string <code>host:port:user:pass</code> (or <code>host:port</code> when the proxy has no authentication). Use it to reuse the authenticated proxy inside the config (scripts, a second hop, a header, …).</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -272,6 +282,8 @@ PARSE &lt;SOURCE&gt; JSON "user.balance" -> "balance" CAP</code></pre>
               <tr><td><code>&lt;COOKIES(*)&gt;</code></td><td>All cookies as string</td></tr>
               <tr><td><code>&lt;COOKIES{session}&gt;</code></td><td>Specific cookie value</td></tr>
               <tr><td><code>&lt;ERROR&gt;</code></td><td>Last exception message (empty if no error)</td></tr>
+              <tr><td><code>&lt;PROXY&gt;</code></td><td>Current proxy as host:port (no credentials)</td></tr>
+              <tr><td><code>&lt;PROXYFULL&gt;</code></td><td>Current proxy as host:port:user:pass (or host:port if no auth)</td></tr>
             </tbody>
           </table>
         </div>
